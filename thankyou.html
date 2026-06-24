@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="تم استلام طلبك بنجاح - عباية شيماء">
+    <meta name="theme-color" content="#134536">
+    <title>شكراً لك - عباية شيماء</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { brand: { green: '#134536', cream: '#FFFEF0' } },
+                    fontFamily: { arabic: ['El Messiri', 'serif'] },
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --green: #134536;
+            --cream: #FFFEF0;
+            --gold: #C9A96E;
+        }
+        * { -webkit-tap-highlight-color: transparent; }
+        html { -webkit-font-smoothing: antialiased; }
+        body {
+            font-family: 'El Messiri', serif;
+            max-width: 480px;
+            margin: 0 auto;
+            background: var(--cream);
+            color: #000;
+            min-height: 100vh;
+        }
+        @media (min-width: 481px) {
+            body {
+                border-left: 1px solid rgba(0,0,0,0.06);
+                border-right: 1px solid rgba(0,0,0,0.06);
+                box-shadow: 0 0 60px rgba(0,0,0,0.08);
+            }
+        }
+
+        /* Success check */
+        .success-icon {
+            width: 88px;
+            height: 88px;
+            border-radius: 50%;
+            background: rgba(19,69,54,0.07);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+        }
+        .success-icon svg {
+            width: 44px;
+            height: 44px;
+        }
+        .check-path {
+            fill: none;
+            stroke: var(--green);
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-dasharray: 60;
+            stroke-dashoffset: 60;
+            animation: draw 0.7s 0.15s ease forwards;
+        }
+        @keyframes draw {
+            to { stroke-dashoffset: 0; }
+        }
+
+        /* Button */
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: var(--green);
+            color: white;
+            font-family: 'El Messiri', serif;
+            font-weight: 600;
+            font-size: 1.05rem;
+            padding: 15px 40px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(19,69,54,0.25);
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.12), transparent 60%);
+            pointer-events: none;
+        }
+        .btn-primary:active { transform: scale(0.97); }
+
+        /* Benefit row */
+        .benefit-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255,255,255,0.6);
+            border-radius: 16px;
+            padding: 14px 16px;
+        }
+        .benefit-check {
+            font-size: 1.2rem;
+            color: var(--green);
+            flex-shrink: 0;
+        }
+
+        /* Recap box */
+        .recap-box {
+            background: white;
+            border-radius: 16px;
+            padding: 18px 20px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.03);
+            text-align: right;
+        }
+
+        /* Animations */
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.75); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .anim-pop { animation: popIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) backwards; }
+        .anim-up { animation: slideUp 0.55s ease-out backwards; }
+        .anim-d1 { animation-delay: 0.25s; }
+        .anim-d2 { animation-delay: 0.45s; }
+        .anim-d3 { animation-delay: 0.65s; }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header style="position: sticky; top: 0; z-index: 100; background: #134536; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.06); box-shadow: 0 4px 24px rgba(0,0,0,0.2);">
+        <div style="display: flex; align-items: center; justify-content: center;">
+            <img src="./logo.png" alt="Chaymae Fashion Logo" style="height: 55px; width: auto; object-fit: contain; display: block;">
+        </div>
+    </header>
+
+    <!-- MAIN -->
+    <main style="padding: 48px 20px 36px; text-align: center;">
+
+        <!-- Success icon -->
+        <div class="success-icon anim-pop">
+            <svg viewBox="0 0 48 48">
+                <polyline class="check-path" points="10,24 20,34 38,14"/>
+            </svg>
+        </div>
+
+        <!-- Headline -->
+        <h1 class="text-3xl font-bold mt-7 mb-3 anim-up anim-d1" style="font-family: 'El Messiri', serif;">
+            شكراً لك على طلبك
+        </h1>
+
+        <!-- Message -->
+        <p class="mb-7 anim-up anim-d1" style="font-family: 'El Messiri', serif; opacity: 0.55; max-width: 280px; margin-left: auto; margin-right: auto;">
+            تم استلام طلبك بنجاح. سيتواصل معك فريقنا قريباً لتأكيد الطلب.
+        </p>
+
+        <!-- Order recap -->
+        <div class="recap-box anim-up anim-d2" id="orderRecap" style="max-width: 320px; margin: 0 auto 28px;">
+            <div class="text-sm font-semibold mb-3" style="color:var(--green);">📋 ملخص طلبك</div>
+            <div id="recapContent" style="font-size: 0.88rem; opacity: 0.7;">
+                جاري التحميل...
+            </div>
+        </div>
+
+        <!-- Benefits -->
+        <div style="max-width: 320px; margin: 0 auto 32px; display: flex; flex-direction: column; gap: 10px;" class="anim-up anim-d3">
+            <div class="benefit-row">
+                <span class="benefit-check">✓</span>
+                <span class="font-medium text-sm">الدفع عند الاستلام</span>
+            </div>
+            <div class="benefit-row">
+                <span class="benefit-check">✓</span>
+                <span class="font-medium text-sm">التوصيل لجميع المدن المغربية</span>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <a href="index.html" class="btn-primary anim-up anim-d3">
+            العودة للصفحة الرئيسية
+        </a>
+    </main>
+
+    <!-- FOOTER -->
+    <footer style="text-align: center; padding: 20px; opacity: 0.25; font-size: 0.75rem;">
+        © 2026 CHAMĀ Abaya. جميع الحقوق محفوظة.
+    </footer>
+
+    <script>
+        (function() {
+            var recap = document.getElementById('recapContent');
+            try {
+                var raw = localStorage.getItem('chamaOrder');
+                if (raw) {
+                    var d = JSON.parse(raw);
+                    var rows = [
+                        ['المنتج', d.product || 'عباية شيماء'],
+                        ['السعر', '<span style="color:var(--green);font-weight:700;">' + (d.price || '297 DH') + '</span>'],
+                        ['اللون', '<span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:' + (d.colorHex || '#134536') + ';vertical-align:middle;margin-left:5px;"></span>' + (d.color || '—')],
+                        ['المقاس', d.size || '—'],
+                        ['الاسم', d.name || '—'],
+                        ['المدينة', d.city || '—']
+                    ];
+                    var html = '';
+                    for (var i = 0; i < rows.length; i++) {
+                        html += '<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid rgba(0,0,0,0.04);">' +
+                            '<span style="opacity:0.6;">' + rows[i][0] + '</span>' +
+                            '<span style="font-weight:600;">' + rows[i][1] + '</span>' +
+                        '</div>';
+                    }
+                    recap.innerHTML = html;
+                } else {
+                    recap.innerHTML = '<div style="text-align:center;padding:8px;">الطلب قيد المعالجة</div>';
+                }
+            } catch (e) {
+                recap.innerHTML = '<div style="text-align:center;padding:8px;">الطلب قيد المعالجة</div>';
+            }
+        })();
+    </script>
+</body>
+</html>

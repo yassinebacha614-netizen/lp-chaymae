@@ -1,0 +1,17 @@
+# Claude
+.claude/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Node (if any)
+node_modules/
+
+# Env
+.env
+.env.local

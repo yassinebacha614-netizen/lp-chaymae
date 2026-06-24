@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="إتمام طلب العباية - اختاري اللون والمقاس">
+    <meta name="theme-color" content="#134536">
+    <title>إتمام الطلب - عباية شيماء</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { brand: { green: '#134536', cream: '#FFFEF0' } },
+                    fontFamily: { arabic: ['El Messiri', 'serif'] },
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --green: #134536;
+            --cream: #FFFEF0;
+            --gold: #C9A96E;
+            --white: #FFFFFF;
+        }
+        * { -webkit-tap-highlight-color: transparent; }
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+        body {
+            font-family: 'El Messiri', serif;
+            max-width: 480px;
+            margin: 0 auto;
+            background: var(--white);
+            color: #000;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        @media (min-width: 481px) {
+            body {
+                border-left: 1px solid rgba(0,0,0,0.06);
+                border-right: 1px solid rgba(0,0,0,0.06);
+                box-shadow: 0 0 60px rgba(0,0,0,0.08);
+            }
+        }
+
+        /* Header */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: #134536;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            padding: 0;
+            transition: box-shadow 0.3s ease;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: var(--green);
+            color: white;
+            font-family: 'El Messiri', serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 16px 40px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(19,69,54,0.25);
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.12), transparent 60%);
+            pointer-events: none;
+        }
+        .btn-primary:active { transform: scale(0.97); }
+        .btn-primary:disabled {
+            opacity: 0.5;
+            pointer-events: none;
+            filter: grayscale(20%);
+        }
+
+        /* Color selector */
+        .color-dot {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1.2);
+            position: relative;
+            flex-shrink: 0;
+            outline: none;
+        }
+        .color-dot:focus-visible { box-shadow: 0 0 0 3px rgba(19,69,54,0.3); }
+        .color-dot.selected {
+            border-color: var(--green);
+            box-shadow: 0 0 0 5px rgba(19,69,54,0.13);
+            transform: scale(1.1);
+        }
+        .color-dot.selected::after {
+            content: '✓';
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1rem;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.35);
+        }
+
+        /* Size selector */
+        .size-btn {
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            border: 2px solid rgba(0,0,0,0.1);
+            background: white;
+            cursor: pointer;
+            font-family: 'El Messiri', serif;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            outline: none;
+        }
+        .size-btn:focus-visible { box-shadow: 0 0 0 3px rgba(19,69,54,0.3); }
+        .size-btn.selected {
+            background: var(--green);
+            color: white;
+            border-color: var(--green);
+            box-shadow: 0 4px 16px rgba(19,69,54,0.3);
+            transform: scale(1.07);
+        }
+
+        /* Form inputs */
+        .form-input {
+            width: 100%;
+            padding: 15px 18px;
+            border-radius: 14px;
+            border: 2px solid rgba(0,0,0,0.08);
+            background: white;
+            font-family: 'El Messiri', serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            outline: none;
+            direction: rtl;
+            color: #000;
+        }
+        .form-input:focus {
+            border-color: var(--green);
+            box-shadow: 0 0 0 4px rgba(19,69,54,0.05);
+        }
+        .form-input.error {
+            border-color: #E53E3E;
+            box-shadow: 0 0 0 4px rgba(229,62,62,0.05);
+            animation: shake 0.5s ease;
+        }
+        .form-input::placeholder { color: #9CA3AF; }
+        .field-error {
+            color: #E53E3E;
+            font-size: 0.78rem;
+            margin-top: 5px;
+            display: none;
+        }
+        .field-error.show { display: block; }
+
+        /* Order summary */
+        .summary-box {
+            background: var(--cream);
+            border-radius: 18px;
+            padding: 22px 20px;
+            border: 1px solid rgba(19,69,54,0.06);
+        }
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 11px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .summary-row:last-child { border-bottom: none; }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-4px); }
+            40%, 80% { transform: translateX(4px); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .anim-fade-up { animation: fadeInUp 0.5s ease-out backwards; }
+        .anim-delay-1 { animation-delay: 0.1s; }
+        .anim-delay-2 { animation-delay: 0.2s; }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header style="position: sticky; top: 0; z-index: 100; background: #134536; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.06); box-shadow: 0 4px 24px rgba(0,0,0,0.2);">
+        <div style="position: relative; display: flex; align-items: center; justify-content: center;">
+            <!-- Back button -->
+            <a href="index.html" style="position: absolute; right: 14px; top: 50%; transform: translateY(-50%); padding: 8px; opacity: 0.7; color: white; z-index: 1;" aria-label="رجوع للصفحة الرئيسية">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            </a>
+            <!-- Logo -->
+            <img src="./logo.png" alt="Chaymae Fashion Logo" style="height: 55px; width: auto; object-fit: contain; display: block;">
+        </div>
+    </header>
+
+    <!-- FORM CONTENT -->
+    <div class="px-5 pb-36">
+
+        <!-- Title -->
+        <div class="text-center my-7 anim-fade-up">
+            <h2 class="text-2xl font-semibold mb-1">إتمام الطلب</h2>
+            <p class="opacity-50 text-sm">اختاري التفاصيل وسنتكفل بالباقي</p>
+        </div>
+
+        <!-- COLOR SELECTION -->
+        <div class="mb-7 anim-fade-up anim-delay-1">
+            <h3 class="text-lg font-semibold mb-3 flex items-center gap-2">
+                <span style="color: var(--green);">✦</span> اختاري اللون
+            </h3>
+            <div class="flex gap-4" id="colorGroup" role="radiogroup" aria-label="اختيار اللون">
+                <div class="color-dot selected" style="background:#134536;" data-color="أخضر" data-hex="#134536" tabindex="0" role="radio" aria-checked="true" aria-label="أخضر" onclick="pickColor(this)" onkeydown="navColor(event,this)"></div>
+                <div class="color-dot" style="background:#D4C5B2;" data-color="بيج" data-hex="#D4C5B2" tabindex="-1" role="radio" aria-checked="false" aria-label="بيج" onclick="pickColor(this)" onkeydown="navColor(event,this)"></div>
+                <div class="color-dot" style="background:#5C3A28;" data-color="بني" data-hex="#5C3A28" tabindex="-1" role="radio" aria-checked="false" aria-label="بني" onclick="pickColor(this)" onkeydown="navColor(event,this)"></div>
+                <div class="color-dot" style="background:#2B4C7E;" data-color="أزرق" data-hex="#2B4C7E" tabindex="-1" role="radio" aria-checked="false" aria-label="أزرق" onclick="pickColor(this)" onkeydown="navColor(event,this)"></div>
+            </div>
+            <p class="text-xs opacity-40 mt-2" id="colorLabel">المختار: أخضر</p>
+        </div>
+
+        <!-- SIZE SELECTION -->
+        <div class="mb-7 anim-fade-up anim-delay-1">
+            <h3 class="text-lg font-semibold mb-3 flex items-center gap-2">
+                <span style="color: var(--green);">✦</span> اختاري المقاس
+            </h3>
+            <div class="flex gap-3" id="sizeGroup" role="radiogroup" aria-label="اختيار المقاس">
+                <button class="size-btn selected" data-size="S" role="radio" aria-checked="true" aria-label="مقاس S" onclick="pickSize(this)" onkeydown="navSize(event,this)">S</button>
+                <button class="size-btn" data-size="M" role="radio" aria-checked="false" aria-label="مقاس M" onclick="pickSize(this)" onkeydown="navSize(event,this)">M</button>
+                <button class="size-btn" data-size="L" role="radio" aria-checked="false" aria-label="مقاس L" onclick="pickSize(this)" onkeydown="navSize(event,this)">L</button>
+                <button class="size-btn" data-size="XL" role="radio" aria-checked="false" aria-label="مقاس XL" onclick="pickSize(this)" onkeydown="navSize(event,this)">XL</button>
+            </div>
+            <p class="text-xs opacity-40 mt-2" id="sizeLabel">المختار: S</p>
+        </div>
+
+        <!-- CUSTOMER INFO -->
+        <div class="mb-7 anim-fade-up anim-delay-2">
+            <h3 class="text-lg font-semibold mb-3 flex items-center gap-2">
+                <span style="color: var(--green);">✦</span> معلومات التوصيل
+            </h3>
+            <div style="display:flex;flex-direction:column;gap:14px;">
+                <div>
+                    <label for="fullName" class="block text-sm mb-1.5 font-medium">الاسم الكامل <span class="text-red-500">*</span></label>
+                    <input type="text" id="fullName" class="form-input" placeholder="أدخلي اسمك الكامل" required autocomplete="name" aria-required="true" aria-describedby="errFullName">
+                    <p class="field-error" id="errFullName" role="alert">المرجو إدخال الاسم الكامل</p>
+                </div>
+                <div>
+                    <label for="phone" class="block text-sm mb-1.5 font-medium">رقم الهاتف <span class="text-red-500">*</span></label>
+                    <input type="tel" id="phone" class="form-input" placeholder="+212 6XX XXX XXX" required autocomplete="tel" dir="ltr" style="text-align:right;" aria-required="true" aria-describedby="errPhone">
+                    <p class="field-error" id="errPhone" role="alert">المرجو إدخال رقم هاتف صحيح (يبدأ بـ 06 أو 07 أو +212)</p>
+                </div>
+                <div>
+                    <label for="city" class="block text-sm mb-1.5 font-medium">المدينة <span class="text-red-500">*</span></label>
+                    <input type="text" id="city" class="form-input" placeholder="أدخلي مدينتك (مثال: الدار البيضاء)" required aria-required="true" aria-describedby="errCity">
+                    <p class="field-error" id="errCity" role="alert">المرجو إدخال اسم المدينة</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ORDER SUMMARY -->
+        <div class="mb-7 anim-fade-up anim-delay-2">
+            <h3 class="text-lg font-semibold mb-3 flex items-center gap-2">
+                <span style="color: var(--green);">✦</span> ملخص الطلب
+            </h3>
+            <div class="summary-box">
+                <div class="summary-row">
+                    <span class="opacity-55">المنتج</span>
+                    <span class="font-semibold">عباية شيماء</span>
+                </div>
+                <div class="summary-row">
+                    <span class="opacity-55">اللون</span>
+                    <span class="font-semibold" id="sumColor">
+                        <span style="display:inline-block;width:14px;height:14px;border-radius:50%;background:#134536;vertical-align:middle;margin-left:4px;"></span>
+                        أخضر
+                    </span>
+                </div>
+                <div class="summary-row">
+                    <span class="opacity-55">المقاس</span>
+                    <span class="font-semibold" id="sumSize">S</span>
+                </div>
+                <div class="summary-row">
+                    <span class="opacity-55">التوصيل</span>
+                    <span class="font-semibold" style="color:var(--green);">مجاني</span>
+                </div>
+                <div class="summary-row" style="border-top:2px solid rgba(19,69,54,0.12); margin-top:6px; padding-top:14px;">
+                    <span class="font-bold text-base">السعر</span>
+                    <span class="font-bold text-lg" style="color:var(--green);">297 DH</span>
+                </div>
+                <div class="summary-row">
+                    <span class="opacity-55">طريقة الدفع</span>
+                    <span class="font-semibold" style="color:var(--green);">الدفع عند الاستلام</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- SUBMIT -->
+        <button class="btn-primary text-lg anim-fade-up anim-delay-2" id="submitBtn" onclick="submitOrder()" style="padding: 18px;">
+            تأكيد الطلب
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 10 4 15 9 20"/><path d="M20 4v7a4 4 0 01-4 4H4"/></svg>
+        </button>
+
+        <!-- Trust row -->
+        <div class="flex items-center justify-center gap-2 mt-4 text-xs opacity-35">
+            <span>🔒 طلب آمن</span>
+            <span>•</span>
+            <span>✓ دفع عند الاستلام</span>
+            <span>•</span>
+            <span>🚚 توصيل سريع</span>
+        </div>
+    </div>
+
+    <script>
+        // ===== STATE =====
+        const order = {
+            color: 'أخضر',
+            colorHex: '#134536',
+            size: 'S',
+        };
+
+        // ===== COLOR =====
+        function pickColor(el) {
+            document.querySelectorAll('#colorGroup .color-dot').forEach(d => {
+                d.classList.remove('selected');
+                d.setAttribute('aria-checked', 'false');
+                d.setAttribute('tabindex', '-1');
+            });
+            el.classList.add('selected');
+            el.setAttribute('aria-checked', 'true');
+            el.setAttribute('tabindex', '0');
+            el.focus();
+            order.color = el.dataset.color;
+            order.colorHex = el.dataset.hex;
+            document.getElementById('colorLabel').textContent = 'المختار: ' + order.color;
+            refreshSummary();
+        }
+
+        function navColor(e, el) {
+            const items = Array.from(document.querySelectorAll('#colorGroup .color-dot'));
+            const i = items.indexOf(el);
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                e.preventDefault();
+                pickColor(items[(i + 1) % items.length]);
+            } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                e.preventDefault();
+                pickColor(items[(i - 1 + items.length) % items.length]);
+            } else if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                pickColor(el);
+            }
+        }
+
+        // ===== SIZE =====
+        function pickSize(el) {
+            document.querySelectorAll('#sizeGroup .size-btn').forEach(b => {
+                b.classList.remove('selected');
+                b.setAttribute('aria-checked', 'false');
+            });
+            el.classList.add('selected');
+            el.setAttribute('aria-checked', 'true');
+            el.focus();
+            order.size = el.dataset.size;
+            document.getElementById('sizeLabel').textContent = 'المختار: ' + order.size;
+            refreshSummary();
+        }
+
+        function navSize(e, el) {
+            const items = Array.from(document.querySelectorAll('#sizeGroup .size-btn'));
+            const i = items.indexOf(el);
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                e.preventDefault();
+                pickSize(items[(i + 1) % items.length]);
+            } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                e.preventDefault();
+                pickSize(items[(i - 1 + items.length) % items.length]);
+            } else if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                pickSize(el);
+            }
+        }
+
+        // ===== SUMMARY =====
+        function refreshSummary() {
+            document.getElementById('sumColor').innerHTML =
+                '<span style="display:inline-block;width:14px;height:14px;border-radius:50%;background:' + order.colorHex + ';vertical-align:middle;margin-left:4px;"></span>' +
+                order.color;
+            document.getElementById('sumSize').textContent = order.size;
+        }
+
+        // ===== VALIDATION =====
+        function showError(inputId, errId) {
+            document.getElementById(inputId).classList.add('error');
+            document.getElementById(errId).classList.add('show');
+        }
+        function clearError(inputId, errId) {
+            document.getElementById(inputId).classList.remove('error');
+            document.getElementById(errId).classList.remove('show');
+        }
+
+        function validateField(id) {
+            const el = document.getElementById(id);
+            const val = el.value.trim();
+            const errId = 'err' + id.charAt(0).toUpperCase() + id.slice(1);
+
+            if (!val) {
+                showError(id, errId);
+                return false;
+            }
+            if (id === 'phone') {
+                const clean = val.replace(/[\s\-()]/g, '');
+                if (!/^(\+212|0)?[5-7]\d{8}$/.test(clean)) {
+                    showError(id, errId);
+                    return false;
+                }
+            }
+            clearError(id, errId);
+            return true;
+        }
+
+        // Live validation
+        ['fullName', 'phone', 'city'].forEach(id => {
+            const el = document.getElementById(id);
+            const errId = 'err' + id.charAt(0).toUpperCase() + id.slice(1);
+            el.addEventListener('blur', () => validateField(id));
+            el.addEventListener('input', () => {
+                if (el.classList.contains('error')) validateField(id);
+            });
+        });
+
+        // ===== SUBMIT =====
+        function submitOrder() {
+            const nameOk = validateField('fullName');
+            const phoneOk = validateField('phone');
+            const cityOk = validateField('city');
+
+            if (!nameOk || !phoneOk || !cityOk) {
+                const firstErr = document.querySelector('.form-input.error');
+                if (firstErr) {
+                    firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    firstErr.focus();
+                }
+                return;
+            }
+
+            const orderData = {
+                product: 'عباية شيماء',
+                price: '297 DH',
+                color: order.color,
+                colorHex: order.colorHex,
+                size: order.size,
+                name: document.getElementById('fullName').value.trim(),
+                phone: document.getElementById('phone').value.trim(),
+                city: document.getElementById('city').value.trim(),
+                date: new Date().toISOString(),
+            };
+
+            // Save for thankyou page
+            localStorage.setItem('chamaOrder', JSON.stringify(orderData));
+
+            // Also keep history of all orders
+            try {
+                const all = JSON.parse(localStorage.getItem('chamaOrders') || '[]');
+                all.push(orderData);
+                localStorage.setItem('chamaOrders', JSON.stringify(all));
+            } catch (e) {}
+
+            // Redirect
+            window.location.href = 'thankyou.html';
+        }
+    </script>
+</body>
+</html>

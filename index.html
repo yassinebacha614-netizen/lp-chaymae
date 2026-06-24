@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="هادي هي العباية اللي غاتخليك ديما مرتاحة وأنيقة فكل خرجة هاد الصيف - مصممة باش تعطيك الأناقة اللي بغيتي والراحة اللي كتستاحقي">
+    <meta name="theme-color" content="#134536">
+    <title>عباية شيماء - فخامة وراحة | CHAMĀ Abaya</title>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { green: '#134536', cream: '#FFFEF0', gold: '#C9A96E', dark: '#0A2820', sand: '#F5F0E8' }
+                    },
+                    fontFamily: { arabic: ['El Messiri', 'serif'], accent: ['Cormorant Garamond', 'serif'], sans: ['Inter', 'sans-serif'] },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --green: #134536;
+            --green-light: #1a5c48;
+            --cream: #FFFEF0;
+            --gold: #C9A96E;
+            --white: #FFFFFF;
+            --black: #000000;
+            --sand: #F5F0E8;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+        * { -webkit-tap-highlight-color: transparent; }
+
+        body {
+            font-family: 'El Messiri', serif;
+            max-width: 480px;
+            margin: 0 auto;
+            background: var(--white);
+            color: var(--black);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        @media (min-width: 481px) {
+            body {
+                border-left: 1px solid rgba(0,0,0,0.05);
+                border-right: 1px solid rgba(0,0,0,0.05);
+                box-shadow: 0 0 80px rgba(0,0,0,0.07);
+            }
+        }
+
+        ::-webkit-scrollbar { width: 0; }
+
+        /* ═══════════ LOADER ═══════════ */
+        .loader {
+            position: fixed; inset: 0; z-index: 9999;
+            background: var(--green);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        .loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+        .loader-logo { width: 130px; animation: loaderPulse 1.5s ease-in-out infinite; }
+        .loader-bar {
+            width: 50px; height: 2px; background: var(--gold);
+            margin-top: 18px; border-radius: 2px;
+            animation: loaderBar 1.2s ease-in-out infinite;
+        }
+
+        @keyframes loaderPulse {
+            0%, 100% { transform: scale(1); opacity: 0.85; }
+            50% { transform: scale(1.06); opacity: 1; }
+        }
+        @keyframes loaderBar {
+            0% { width: 50px; opacity: 0.4; }
+            50% { width: 90px; opacity: 1; }
+            100% { width: 50px; opacity: 0.4; }
+        }
+
+        /* ═══════════ HEADER ═══════════ */
+        .header {
+            position: sticky; top: 0; z-index: 100;
+            background: var(--green); padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+        }
+
+        /* ═══════════ VIDEO HERO ═══════════ */
+        .video-hero {
+            position: relative; border-radius: 24px; overflow: hidden;
+            background: linear-gradient(135deg, #134536, #0d3327); padding: 3px;
+            box-shadow: 0 24px 60px rgba(0,0,0,0.14), 0 4px 16px rgba(0,0,0,0.06);
+        }
+        .video-hero::after {
+            content: ''; position: absolute; inset: 3px; border-radius: 21px;
+            border: 1px solid rgba(201,169,110,0.2); pointer-events: none; z-index: 2;
+        }
+        .video-hero video {
+            display: block; width: 100%; aspect-ratio: 9/16;
+            object-fit: cover; border-radius: 21px;
+        }
+
+        /* ═══════════ BUTTONS ═══════════ */
+        .btn-primary {
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            background: var(--green); color: white;
+            font-family: 'El Messiri', serif; font-weight: 600; font-size: 1.1rem;
+            padding: 16px 40px; border-radius: 50px; border: none;
+            cursor: pointer; text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1.2);
+            box-shadow: 0 4px 24px rgba(19,69,54,0.28);
+            position: relative; overflow: hidden;
+        }
+        .btn-primary::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.14), transparent 60%);
+            pointer-events: none;
+        }
+        .btn-primary::before {
+            content: ''; position: absolute; top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.25) 0%, transparent 60%);
+            opacity: 0; transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+        .btn-primary:hover::before { opacity: 1; }
+        .btn-primary:active { transform: scale(0.95); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 36px rgba(19,69,54,0.4); }
+
+        .btn-gold {
+            display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+            background: var(--gold); color: white;
+            font-family: 'El Messiri', serif; font-weight: 600; font-size: 0.95rem;
+            padding: 12px 32px; border-radius: 50px; border: none;
+            cursor: pointer; text-decoration: none;
+            transition: all 0.35s ease;
+            box-shadow: 0 4px 18px rgba(201,169,110,0.3);
+        }
+        .btn-gold:active { transform: scale(0.95); }
+
+        /* ═══════════ COUNTER STRIP ═══════════ */
+        .counter-strip {
+            display: flex; justify-content: space-around;
+            padding: 12px 20px 24px; gap: 8px;
+        }
+        .counter-item { text-align: center; flex: 1; }
+        .counter-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem; font-weight: 700; color: var(--green);
+            display: flex; align-items: baseline; justify-content: center; gap: 2px;
+        }
+        .counter-number .plus { font-size: 1rem; color: var(--gold); }
+        .counter-label { font-size: 0.7rem; opacity: 0.45; margin-top: 2px; }
+
+        /* ═══════════ PRODUCT GALLERY (RTL-safe) ═══════════ */
+        .gallery-wrapper {
+            position: relative; overflow: hidden;
+        }
+        .gallery-scroll {
+            display: flex; gap: 14px;
+            overflow-x: auto; overflow-y: hidden;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            padding: 4px 20px 12px;
+            direction: ltr;
+        }
+        .gallery-scroll::-webkit-scrollbar { display: none; }
+
+        .gallery-card {
+            flex: 0 0 auto;
+            width: 165px;
+            aspect-ratio: 9/16;
+            border-radius: 20px;
+            overflow: hidden;
+            scroll-snap-align: start;
+            cursor: pointer;
+            position: relative;
+            box-shadow: 0 8px 28px rgba(0,0,0,0.06);
+            transition: transform 0.35s cubic-bezier(0.25,0.8,0.25,1.2), box-shadow 0.35s ease;
+        }
+        .gallery-card:active { transform: scale(0.94); }
+        .gallery-card img {
+            width: 100%; height: 100%; object-fit: cover; display: block;
+        }
+        .gallery-card::after {
+            content: ''; position: absolute; inset: 0;
+            display: flex; align-items: center; justify-content: center;
+            background: rgba(0,0,0,0.35);
+            opacity: 0; transition: opacity 0.3s ease;
+        }
+        .gallery-card:hover::after { opacity: 1; }
+
+        /* ═══════════ LIGHTBOX ═══════════ */
+        .lightbox {
+            position: fixed; inset: 0; z-index: 9998;
+            background: rgba(0,0,0,0.92); backdrop-filter: blur(12px);
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden;
+            transition: opacity 0.35s ease, visibility 0.35s ease;
+        }
+        .lightbox.open { opacity: 1; visibility: visible; }
+        .lightbox img {
+            max-width: 92vw; max-height: 85vh; border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            transform: scale(0.9);
+            transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+        }
+        .lightbox.open img { transform: scale(1); }
+        .lightbox-close {
+            position: absolute; top: 16px; right: 16px;
+            width: 44px; height: 44px; border-radius: 50%;
+            background: rgba(255,255,255,0.12); border: none; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 1.3rem; z-index: 2;
+            transition: background 0.3s ease;
+        }
+        .lightbox-close:active { background: rgba(255,255,255,0.2); }
+
+        /* ═══════════ TESTIMONIALS (RTL-safe) ═══════════ */
+        .testi-wrapper { position: relative; overflow: hidden; }
+        .testi-scroll {
+            display: flex; gap: 14px;
+            overflow-x: auto; overflow-y: hidden;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            padding: 4px 20px 14px;
+            direction: ltr;
+        }
+        .testi-scroll::-webkit-scrollbar { display: none; }
+
+        .testi-card {
+            flex: 0 0 auto;
+            width: 195px;
+            aspect-ratio: 9/16;
+            border-radius: 22px;
+            overflow: hidden;
+            scroll-snap-align: start;
+            background: #000;
+            position: relative;
+            cursor: pointer;
+            box-shadow: 0 10px 32px rgba(0,0,0,0.1);
+            transition: transform 0.4s ease;
+        }
+        .testi-card:active { transform: scale(0.95); }
+        .testi-card video {
+            width: 100%; height: 100%; object-fit: cover; display: block;
+        }
+        .testi-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.08) 40%, rgba(0,0,0,0.02) 100%);
+            display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+            padding: 16px; color: white; text-align: center;
+            pointer-events: none;
+        }
+        .play-indicator {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+            width: 52px; height: 52px; border-radius: 50%;
+            background: rgba(255,255,255,0.9); color: var(--green);
+            display: flex; align-items: center; justify-content: center;
+            transition: opacity 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+        .testi-card.playing .play-indicator { opacity: 0; pointer-events: none; }
+        .testi-label {
+            font-size: 0.72rem; opacity: 0;
+            transition: opacity 0.3s ease;
+            background: rgba(0,0,0,0.45); padding: 4px 12px; border-radius: 20px;
+        }
+        .testi-card.playing .testi-label { opacity: 1; }
+
+        /* ═══════════ GUARANTEE CARDS ═══════════ */
+        .guarantee-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+        }
+        .guarantee-card {
+            background: white; border-radius: 20px; padding: 22px 14px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            border: 1px solid rgba(19,69,54,0.05);
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+        }
+        .guarantee-card:hover { transform: translateY(-4px); box-shadow: 0 14px 36px rgba(0,0,0,0.08); }
+        .g-icon {
+            width: 52px; height: 52px; border-radius: 50%;
+            background: rgba(19,69,54,0.05);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 12px; color: var(--green);
+        }
+        .g-icon svg { width: 24px; height: 24px; }
+
+        /* ═══════════ FAQ ACCORDION ═══════════ */
+        .faq-item {
+            border: 1px solid rgba(0,0,0,0.06); border-radius: 16px;
+            margin-bottom: 8px; overflow: hidden;
+            background: white;
+            transition: box-shadow 0.35s ease;
+        }
+        .faq-item.open {
+            box-shadow: 0 6px 24px rgba(0,0,0,0.06);
+            border-color: rgba(19,69,54,0.1);
+        }
+        .faq-q {
+            width: 100%; display: flex; align-items: center; justify-content: space-between;
+            padding: 16px 18px; cursor: pointer; border: none; background: none;
+            font-family: 'El Messiri', serif; font-size: 0.95rem; font-weight: 600;
+            text-align: right; color: #000; gap: 12px;
+        }
+        .faq-q .chevron {
+            flex-shrink: 0;
+            transition: transform 0.35s ease; opacity: 0.3;
+        }
+        .faq-item.open .faq-q .chevron { transform: rotate(180deg); opacity: 0.8; }
+        .faq-a {
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+        }
+        .faq-item.open .faq-a { max-height: 200px; }
+        .faq-a-inner {
+            padding: 0 18px 16px; font-size: 0.85rem;
+            opacity: 0.55; line-height: 1.7;
+        }
+
+        /* ═══════════ STICKY CTA ═══════════ */
+        .sticky-cta {
+            position: fixed; bottom: 0; left: 0; right: 0; z-index: 95;
+            max-width: 480px; margin: 0 auto;
+            padding: 10px 20px;
+            padding-bottom: max(18px, env(safe-area-inset-bottom));
+            background: linear-gradient(to top, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.75) 65%, transparent 100%);
+            transform: translateY(140px); opacity: 0; pointer-events: none;
+            transition: transform 0.45s cubic-bezier(0.25,0.8,0.25,1), opacity 0.4s ease;
+        }
+        .sticky-cta.visible { transform: translateY(0); opacity: 1; pointer-events: auto; }
+        .sticky-cta .btn-primary { width: 100%; }
+
+        /* ═══════════ WHATSAPP FLOAT ═══════════ */
+        .wa-float {
+            position: fixed; z-index: 90;
+            bottom: 100px;
+            right: auto;
+            left: max(20px, calc((100vw - 480px)/2 + 20px));
+            width: 54px; height: 54px; border-radius: 50%;
+            background: #25D366;
+            box-shadow: 0 4px 22px rgba(37,211,102,0.38);
+            display: flex; align-items: center; justify-content: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, bottom 0.35s ease;
+            animation: waBounce 2.5s ease-in-out infinite;
+        }
+        .wa-float:active { transform: scale(0.86); }
+
+        @keyframes waBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-7px); }
+        }
+
+        /* ═══════════ SOCIAL TOAST ═══════════ */
+        .social-toast {
+            position: fixed; bottom: 170px; left: 20px; right: 20px; z-index: 89;
+            max-width: 440px; margin: 0 auto;
+            background: white; border-radius: 14px; padding: 12px 16px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            display: flex; align-items: center; gap: 12px;
+            font-size: 0.82rem; font-weight: 500;
+            transform: translateY(120px); opacity: 0; pointer-events: none;
+            transition: transform 0.45s cubic-bezier(0.34,1.56,0.64,1), opacity 0.35s ease;
+        }
+        .social-toast.show {
+            transform: translateY(0); opacity: 1; pointer-events: auto;
+        }
+        .toast-avatar {
+            width: 38px; height: 38px; border-radius: 50%;
+            background: var(--green);
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 0.9rem; flex-shrink: 0;
+        }
+        .toast-close {
+            margin-right: auto; border: none; background: none; cursor: pointer;
+            opacity: 0.3; font-size: 1.1rem; padding: 4px; color: #000;
+        }
+
+        /* ═══════════ SCROLL HINT ═══════════ */
+        @keyframes swipeHint {
+            0%, 100% { transform: translateX(0); opacity: 0.3; }
+            50% { transform: translateX(-6px); opacity: 0.7; }
+        }
+        .hint-arrow { display: inline-block; animation: swipeHint 2s ease-in-out infinite; }
+
+        /* ═══════════ ANIMATIONS ═══════════ */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeDown {
+            from { opacity: 0; transform: translateY(-16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.85); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .anim-fade-up   { animation: fadeUp 0.7s cubic-bezier(0.25,0.8,0.25,1) backwards; }
+        .anim-fade-down { animation: fadeDown 0.55s ease-out backwards; }
+        .anim-pop       { animation: popIn 0.6s cubic-bezier(0.34,1.56,0.64,1) backwards; }
+        .anim-d1 { animation-delay: 0.08s; }
+        .anim-d2 { animation-delay: 0.18s; }
+        .anim-d3 { animation-delay: 0.30s; }
+        .anim-d4 { animation-delay: 0.42s; }
+
+        /* ═══════════ SCROLL REVEAL ═══════════ */
+        .reveal {
+            opacity: 0; transform: translateY(22px);
+            transition: opacity 0.7s cubic-bezier(0.25,0.8,0.25,1), transform 0.7s cubic-bezier(0.25,0.8,0.25,1);
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    </style>
+</head>
+<body>
+
+    <!-- ═══════════════════ LOADER ═══════════════════ -->
+    <div class="loader" id="loader">
+        <img src="./logo.png" alt="CHAMĀ" class="loader-logo">
+        <div class="loader-bar"></div>
+    </div>
+
+    <!-- ═══════════════════ HEADER ═══════════════════ -->
+    <header class="header" id="header">
+        <div style="display:flex;align-items:center;justify-content:center;">
+            <img src="./logo.png" alt="Chaymae Fashion Logo"
+                 style="height:55px;width:auto;object-fit:contain;display:block;">
+        </div>
+    </header>
+
+    <!-- ═══════════════════ HERO ═══════════════════ -->
+    <section style="padding:30px 20px 18px;">
+
+        <!-- Badge -->
+        <div class="text-center mb-3 anim-fade-down">
+            <span style="display:inline-flex;align-items:center;gap:7px;background:rgba(201,169,110,0.07);border:1px solid rgba(201,169,110,0.18);padding:8px 18px;border-radius:50px;font-size:0.74rem;color:var(--gold);font-family:'Cormorant Garamond',serif;font-style:italic;letter-spacing:0.03em;">
+                ✦ chaymae fashion ✦
+            </span>
+        </div>
+
+        <!-- Headline -->
+        <h1 class="text-3xl font-bold text-center mb-3 anim-fade-up leading-tight"
+            style="font-family:'El Messiri',serif;color:#134536;">
+            هادي هي العباية اللي غاتخليك<br>ديما مرتاحة وأنيقة فكل خرجة هاد الصيف
+        </h1>
+
+        <!-- Subtext -->
+        <p class="text-center mb-6 anim-fade-up anim-d1" style="opacity:0.45;font-size:0.92rem;">
+            مصممة باش تعطيك الأناقة اللي بغيتي والراحة اللي كتستاحقي
+        </p>
+
+        <!-- Hero Video -->
+        <div class="video-hero mb-6 anim-pop anim-d2">
+            <video autoplay muted loop playsinline preload="metadata"
+                   poster="./images/img1.webp">
+                <source src="./videos/hero.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <!-- Hero CTA -->
+        <div class="text-center anim-fade-up anim-d3">
+            <a href="order.html" class="btn-primary" style="padding:17px 44px;font-size:1.15rem;">
+                اطلبي الآن
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"/>
+                    <polyline points="12 5 19 12 12 19"/>
+                </svg>
+            </a>
+            <p class="text-xs mt-2" style="opacity:0.3;">✓ الدفع عند الاستلام &nbsp;✓ توصيل سريع</p>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ COUNTER STRIP ═══════════════════ -->
+    <div class="counter-strip reveal">
+        <div class="counter-item">
+            <div class="counter-number"><span class="count" data-target="1247">0</span><span class="plus">+</span></div>
+            <div class="counter-label">زبونة سعيدة</div>
+        </div>
+        <div class="counter-item">
+            <div class="counter-number"><span class="count" data-target="7">0</span></div>
+            <div class="counter-label">مدينة مغربية</div>
+        </div>
+        <div class="counter-item">
+            <div class="counter-number"><span class="count" data-target="297">0</span><span class="plus">DH</span></div>
+            <div class="counter-label">ثمن العباية</div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════ DIVIDER ═══════════════════ -->
+    <div style="display:flex;align-items:center;gap:12px;padding:0 20px;margin-bottom:4px;opacity:0.22;">
+        <div style="flex:1;height:1px;background:linear-gradient(to left,transparent,var(--gold));"></div>
+        <span style="color:var(--gold);font-size:0.55rem;">✦</span>
+        <div style="flex:1;height:1px;background:linear-gradient(to right,transparent,var(--gold));"></div>
+    </div>
+
+    <!-- ═══════════════════ PRODUCT GALLERY ═══════════════════ -->
+    <section style="padding:32px 0 18px;" id="gallery">
+        <div class="text-center mb-5">
+            <h2 class="text-2xl font-semibold" style="font-family:'El Messiri',serif;">تصاميمنا</h2>
+            <p class="text-sm mt-1" style="opacity:0.4;">أحدث موديلات العبايات لهذا الموسم</p>
+        </div>
+
+        <div class="gallery-wrapper">
+            <div class="gallery-scroll" id="galleryScroll">
+                <div class="gallery-card reveal" onclick="openLightbox('./images/img1.webp')">
+                    <img src="./images/img1.webp" alt="عباية شيماء" loading="lazy">
+                </div>
+                <div class="gallery-card reveal" style="transition-delay:0.06s;" onclick="openLightbox('./images/img2.webp')">
+                    <img src="./images/img2.webp" alt="عباية شيماء" loading="lazy">
+                </div>
+                <div class="gallery-card reveal" style="transition-delay:0.12s;" onclick="openLightbox('./images/img5.webp')">
+                    <img src="./images/img5.webp" alt="عباية شيماء" loading="lazy">
+                </div>
+                <div class="gallery-card reveal" style="transition-delay:0.18s;" onclick="openLightbox('./images/img9.webp')">
+                    <img src="./images/img9.webp" alt="عباية شيماء" loading="lazy">
+                </div>
+                <div class="gallery-card reveal" style="transition-delay:0.24s;" onclick="openLightbox('./images/img13.webp')">
+                    <img src="./images/img13.webp" alt="عباية شيماء" loading="lazy">
+                </div>
+            </div>
+        </div>
+        <p class="text-center text-xs mt-1" style="opacity:0.2;">
+            <span class="hint-arrow">→</span> اسحبي للمزيد <span class="hint-arrow">→</span>
+        </p>
+    </section>
+
+    <!-- ═══════════════════ LIGHTBOX ═══════════════════ -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="closeLightbox()" aria-label="إغلاق">✕</button>
+        <img src="" alt="عباية شيماء" id="lightboxImg">
+    </div>
+
+    <!-- ═══════════════════ TESTIMONIALS ═══════════════════ -->
+    <section class="reveal" style="background:var(--cream);padding:38px 0 28px;">
+        <div class="text-center mb-6 px-5">
+            <h2 class="text-2xl font-semibold mb-2" style="font-family:'El Messiri',serif;">آراء زبوناتنا</h2>
+            <p class="text-sm" style="opacity:0.4;">تجارب حقيقية من زبوناتنا في المغرب</p>
+        </div>
+
+        <div class="testi-wrapper">
+            <div class="testi-scroll" id="testiScroll">
+                <!-- Card 1 - real video -->
+                <div class="testi-card" onclick="toggleTestiVideo(this)" data-video="./videos/testimonial.mp4">
+                    <video muted playsinline preload="none">
+                        <source src="./videos/testimonial.mp4" type="video/mp4">
+                    </video>
+                    <div class="testi-overlay">
+                        <div class="play-indicator">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--green)">
+                                <polygon points="7,3 21,12 7,21"/>
+                            </svg>
+                        </div>
+                        <span class="testi-label">🤍 زبونة مراكش</span>
+                    </div>
+                </div>
+
+                <!-- Card 2 - placeholder -->
+                <div class="testi-card" onclick="toggleTestiVideo(this)" style="background:linear-gradient(180deg,#1a5c48,#0d3327);">
+                    <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:4rem;">🤍</div>
+                    <div class="testi-overlay">
+                        <div class="play-indicator">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--green)">
+                                <polygon points="7,3 21,12 7,21"/>
+                            </svg>
+                        </div>
+                        <span class="testi-label">🤍 زبونة الدار البيضاء</span>
+                    </div>
+                </div>
+
+                <!-- Card 3 - placeholder -->
+                <div class="testi-card" onclick="toggleTestiVideo(this)" style="background:linear-gradient(180deg,#5C3A28,#3d2216);">
+                    <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:4rem;">🤎</div>
+                    <div class="testi-overlay">
+                        <div class="play-indicator">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--green)">
+                                <polygon points="7,3 21,12 7,21"/>
+                            </svg>
+                        </div>
+                        <span class="testi-label">🤎 زبونة الرباط</span>
+                    </div>
+                </div>
+
+                <!-- Card 4 - placeholder -->
+                <div class="testi-card" onclick="toggleTestiVideo(this)" style="background:linear-gradient(180deg,#2B4C7E,#1a3355);">
+                    <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:4rem;">💙</div>
+                    <div class="testi-overlay">
+                        <div class="play-indicator">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--green)">
+                                <polygon points="7,3 21,12 7,21"/>
+                            </svg>
+                        </div>
+                        <span class="testi-label">💙 زبونة طنجة</span>
+                    </div>
+                </div>
+
+                <!-- Card 5 - placeholder -->
+                <div class="testi-card" onclick="toggleTestiVideo(this)" style="background:linear-gradient(180deg,#8B7355,#5c4a35);">
+                    <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:4rem;">✨</div>
+                    <div class="testi-overlay">
+                        <div class="play-indicator">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--green)">
+                                <polygon points="7,3 21,12 7,21"/>
+                            </svg>
+                        </div>
+                        <span class="testi-label">✨ زبونة فاس</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p class="text-center text-xs mt-1" style="opacity:0.2;">
+            <span class="hint-arrow">→</span> اسحبي للمزيد <span class="hint-arrow">→</span>
+        </p>
+
+        <div class="text-center mt-7">
+            <a href="order.html" class="btn-primary">أريد طلبي الآن</a>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ GUARANTEES ═══════════════════ -->
+    <section style="padding:40px 20px;background:var(--cream);">
+        <div class="text-center mb-7">
+            <h2 class="text-2xl font-semibold" style="font-family:'El Messiri',serif;">لماذا تشتري من عندنا؟</h2>
+        </div>
+
+        <div class="guarantee-grid">
+            <div class="guarantee-card reveal">
+                <div class="g-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                         stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="5" width="20" height="14" rx="2"/>
+                        <path d="M2 10h20"/>
+                        <circle cx="7" cy="15" r="1.2" fill="currentColor"/>
+                        <circle cx="12" cy="15" r="1.2" fill="currentColor"/>
+                    </svg>
+                </div>
+                <div class="font-semibold text-sm mb-1">الدفع عند الاستلام</div>
+                <div class="text-xs" style="opacity:0.4;">ادفعي فقط عند استلام طلبك</div>
+            </div>
+            <div class="guarantee-card reveal" style="transition-delay:0.08s;">
+                <div class="g-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                         stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 16l-4 4 4 4"/><path d="M2 20h12a5 5 0 005-5V9"/><circle cx="18" cy="5" r="3"/>
+                    </svg>
+                </div>
+                <div class="font-semibold text-sm mb-1">توصيل سريع لجميع المدن</div>
+                <div class="text-xs" style="opacity:0.4;">نوصل لباب دارك في أي مدينة</div>
+            </div>
+            <div class="guarantee-card reveal" style="transition-delay:0.16s;">
+                <div class="g-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                         stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 12a9 9 0 1118 0 9 9 0 01-18 0z"/>
+                        <path d="M3 12l3-3m-3 3l3 3"/><path d="M12 8v4l2 2"/>
+                    </svg>
+                </div>
+                <div class="font-semibold text-sm mb-1">إمكانية الاسترجاع</div>
+                <div class="text-xs" style="opacity:0.4;">إذا ما عجبك المنتج رجعيه</div>
+            </div>
+            <div class="guarantee-card reveal" style="transition-delay:0.24s;">
+                <div class="g-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                         stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                    </svg>
+                </div>
+                <div class="font-semibold text-sm mb-1">جودة عالية مضمونة</div>
+                <div class="text-xs" style="opacity:0.4;">أفضل أنواع القماش والخياطة</div>
+            </div>
+        </div>
+
+        <div class="text-center mt-9">
+            <a href="order.html" class="btn-primary" style="padding:18px 44px;font-size:1.15rem;">
+                اطلبي العباية الآن
+            </a>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ FAQ ═══════════════════ -->
+    <section style="padding:40px 20px;">
+        <div class="text-center mb-6">
+            <h2 class="text-2xl font-semibold" style="font-family:'El Messiri',serif;">أسئلة متكررة</h2>
+        </div>
+
+        <div class="faq-item reveal">
+            <button class="faq-q" onclick="toggleFaq(this)">
+                <span>كيفاش نقدر نطلب العباية؟</span>
+                <svg class="chevron" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2.5">
+                    <polyline points="6 9 12 15 18 9"/>
+                </svg>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">اختاري اللون والمقاس من صفحة الطلب، دخلي معلوماتك، وضغطي على تأكيد. غادي يتواصلو معاك مباشرة على الواتساب.</div></div>
+        </div>
+        <div class="faq-item reveal" style="transition-delay:0.06s;">
+            <button class="faq-q" onclick="toggleFaq(this)">
+                <span>واش كاين الدفع عند الاستلام؟</span>
+                <svg class="chevron" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2.5">
+                    <polyline points="6 9 12 15 18 9"/>
+                </svg>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">أييه، الدفع عند الاستلام متاح فجميع مدن المغرب. ادفعي غير ملي توصلك العباية لباب دارك.</div></div>
+        </div>
+        <div class="faq-item reveal" style="transition-delay:0.12s;">
+            <button class="faq-q" onclick="toggleFaq(this)">
+                <span>شحال كيدوز الوقت باش يوصل الطلب؟</span>
+                <svg class="chevron" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2.5">
+                    <polyline points="6 9 12 15 18 9"/>
+                </svg>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">التوصيل كيكون ما بين 48 و 72 ساعة حسب المدينة. فالمدن الكبيرة (الدار البيضاء، الرباط، مراكش) كيوصل فـ 24-48 ساعة.</div></div>
+        </div>
+        <div class="faq-item reveal" style="transition-delay:0.18s;">
+            <button class="faq-q" onclick="toggleFaq(this)">
+                <span>واش نقدر نرجع العباية إلا ما عجباتنيش؟</span>
+                <svg class="chevron" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2.5">
+                    <polyline points="6 9 12 15 18 9"/>
+                </svg>
+            </button>
+            <div class="faq-a"><div class="faq-a-inner">أييه، عندك 7 أيام باش ترجعي العباية إلا كانت مازالة فحالتها الأصلية. تواصلي معانا على الواتساب وغادي نرجعو لك المبلغ كامل.</div></div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ FINAL CTA ═══════════════════ -->
+    <section style="padding:20px 20px 50px;text-align:center;background:var(--cream);">
+        <div style="background:var(--green);border-radius:28px;padding:32px 24px;color:white;">
+            <p class="text-lg mb-2" style="font-family:'El Messiri',serif;opacity:0.85;">جاهزة باش تطلبي؟</p>
+            <h3 class="text-2xl font-bold mb-5" style="font-family:'El Messiri',serif;">
+                عباية أنيقة بثمن 297 درهم
+            </h3>
+            <a href="order.html" class="btn-gold" style="font-size:1.05rem;padding:14px 36px;border-radius:50px;">
+                اطلبي الآن
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            <p class="text-xs mt-3" style="opacity:0.45;">✓ الدفع عند الاستلام &nbsp;✓ توصيل سريع &nbsp;✓ إمكانية الاسترجاع</p>
+        </div>
+    </section>
+
+    <!-- ═══════════════════ FOOTER ═══════════════════ -->
+    <footer style="text-align:center;padding:28px 20px;background:var(--cream);">
+        <p style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold);font-size:1.1rem;margin-bottom:4px;">CHAMĀ</p>
+        <p class="text-xs" style="opacity:0.2;">© 2026 CHAMĀ Abaya. جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <!-- ═══════════════════ WHATSAPP FLOAT ═══════════════════ -->
+    <a href="https://wa.me/212602753553?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D9%85%D8%B9%D9%84%D9%88%D9%85%D8%A7%D8%AA%20%D8%B9%D9%86%20%D8%A7%D9%84%D8%B9%D8%A8%D8%A7%D9%8A%D8%A9"
+       target="_blank" rel="noopener" class="wa-float" id="waFloat" aria-label="تواصل عبر واتساب">
+        <svg viewBox="0 0 24 24" fill="white" width="28" height="28">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884"/>
+        </svg>
+    </a>
+
+    <!-- ═══════════════════ STICKY CTA ═══════════════════ -->
+    <div class="sticky-cta" id="stickyCta">
+        <a href="order.html" class="btn-primary" style="padding:15px;">
+            اطلبي الآن بـ 297 DH
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+    </div>
+
+    <!-- ═══════════════════ SOCIAL TOAST ═══════════════════ -->
+    <div class="social-toast" id="socialToast">
+        <div class="toast-avatar">🤍</div>
+        <div>
+            <div style="font-weight:600;font-size:0.8rem;">زبونة من <span id="toastCity">الدار البيضاء</span></div>
+            <div style="font-size:0.7rem;opacity:0.45;" id="toastTime">طلبت هادي 5 دقائق</div>
+        </div>
+        <button class="toast-close" onclick="dismissToast()">✕</button>
+    </div>
+
+
+    <!-- ═══════════════════ SCRIPTS ═══════════════════ -->
+    <script>
+    (function() {
+        'use strict';
+
+        // ── DOM refs ──
+        var loader       = document.getElementById('loader');
+        var stickyCta    = document.getElementById('stickyCta');
+        var waFloat      = document.getElementById('waFloat');
+        var lightbox     = document.getElementById('lightbox');
+        var lightboxImg  = document.getElementById('lightboxImg');
+        var socialToast  = document.getElementById('socialToast');
+        var toastCity    = document.getElementById('toastCity');
+        var toastTime    = document.getElementById('toastTime');
+
+        // ═══════════════ LOADER ═══════════════
+        function hideLoader() { if (loader) loader.classList.add('hidden'); }
+        window.addEventListener('load', function() { setTimeout(hideLoader, 800); });
+        setTimeout(hideLoader, 3000);
+
+        // ═══════════════ STICKY CTA ═══════════════
+        var ticking = false;
+        window.addEventListener('scroll', function() {
+            if (ticking) return;
+            ticking = true;
+            requestAnimationFrame(function() {
+                var y = window.pageYOffset || document.documentElement.scrollTop;
+                if (y > 500) {
+                    stickyCta.classList.add('visible');
+                    waFloat.style.bottom = '125px';
+                } else if (y < 250) {
+                    stickyCta.classList.remove('visible');
+                    waFloat.style.bottom = '100px';
+                }
+                ticking = false;
+            });
+        }, { passive: true });
+
+        // ═══════════════ SCROLL REVEAL ═══════════════
+        var revealObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+
+        document.querySelectorAll('.reveal').forEach(function(el) {
+            revealObserver.observe(el);
+        });
+
+        // ═══════════════ COUNTER ANIMATION ═══════════════
+        var countObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (!entry.isIntersecting) return;
+                var el = entry.target;
+                var target = parseInt(el.dataset.target, 10);
+                var duration = 1800;
+                var start = performance.now();
+                function anim(now) {
+                    var elapsed = now - start;
+                    var progress = Math.min(elapsed / duration, 1);
+                    var eased = 1 - (1 - progress) * (1 - progress);
+                    el.textContent = Math.floor(eased * target);
+                    if (progress < 1) requestAnimationFrame(anim);
+                    else el.textContent = target;
+                }
+                requestAnimationFrame(anim);
+                countObserver.unobserve(el);
+            });
+        }, { threshold: 0.3 });
+
+        document.querySelectorAll('.count').forEach(function(el) {
+            countObserver.observe(el);
+        });
+
+        // ═══════════════ LIGHTBOX ═══════════════
+        window.openLightbox = function(src) {
+            if (!lightboxImg || !lightbox) return;
+            lightboxImg.src = src;
+            lightbox.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        };
+
+        window.closeLightbox = function() {
+            if (!lightbox) return;
+            lightbox.classList.remove('open');
+            document.body.style.overflow = '';
+        };
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeLightbox();
+        });
+
+        // ═══════════════ TESTIMONIAL VIDEOS ═══════════════
+        var activeTesti = null;
+
+        window.toggleTestiVideo = function(card) {
+            var video = card.querySelector('video');
+
+            // If this card is already playing → pause it
+            if (activeTesti === card) {
+                if (video) video.pause();
+                card.classList.remove('playing');
+                activeTesti = null;
+                return;
+            }
+
+            // Stop any previously playing card
+            if (activeTesti) {
+                var oldVideo = activeTesti.querySelector('video');
+                if (oldVideo) oldVideo.pause();
+                activeTesti.classList.remove('playing');
+            }
+
+            // Play this one
+            if (video) { video.play().catch(function() {}); }
+            card.classList.add('playing');
+            activeTesti = card;
+        };
+
+        // ═══════════════ FAQ ACCORDION ═══════════════
+        window.toggleFaq = function(btn) {
+            var item = btn.closest('.faq-item');
+            if (!item) return;
+            // Close other open items
+            document.querySelectorAll('.faq-item.open').forEach(function(el) {
+                if (el !== item) el.classList.remove('open');
+            });
+            item.classList.toggle('open');
+        };
+
+        // ═══════════════ SOCIAL TOAST ═══════════════
+        var cities = ['الدار البيضاء','الرباط','مراكش','طنجة','فاس','أكادير','مكناس','وجدة','تطوان','آسفي'];
+        var toastTimer = null;
+
+        function showToast() {
+            if (!socialToast || !toastCity || !toastTime) return;
+            var city = cities[Math.floor(Math.random() * cities.length)];
+            var mins = Math.floor(Math.random() * 15) + 2;
+            toastCity.textContent = city;
+            toastTime.textContent = 'طلبت هادي ' + mins + ' دقائق';
+            socialToast.classList.add('show');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(hideToast, 5000);
+        }
+
+        function hideToast() {
+            if (socialToast) socialToast.classList.remove('show');
+        }
+
+        window.dismissToast = function() {
+            hideToast();
+            clearTimeout(toastTimer);
+        };
+
+        // Show 1st toast after 8s, repeat every 30s
+        setTimeout(showToast, 8000);
+        setInterval(function() {
+            if (socialToast && !socialToast.classList.contains('show')) showToast();
+        }, 30000);
+
+        // ═══════════════ AUTO SCROLL HINT ═══════════════
+        function autoHintScroll(scrollEl) {
+            if (!scrollEl || scrollEl.dataset.hinted) return;
+            scrollEl.dataset.hinted = 'true';
+
+            var maxScroll = scrollEl.scrollWidth - scrollEl.clientWidth;
+            if (maxScroll <= 0) return;
+
+            var speed = 0.07;  // px per ms
+            var pos = 0;
+            var dir = 1;
+            var lastTime = null;
+            var done = false;
+            var rafId = null;
+
+            function tick(now) {
+                if (done) return;
+                if (lastTime === null) lastTime = now;
+                var dt = Math.min(now - lastTime, 33);
+                lastTime = now;
+
+                pos += dir * speed * dt;
+
+                if (pos >= maxScroll) {
+                    pos = maxScroll;
+                    dir = -1;
+                } else if (pos <= 0 && dir === -1) {
+                    pos = 0;
+                    // Smooth return & stop
+                    cancelAnimationFrame(rafId);
+                    scrollEl.scrollTo({ left: 0, behavior: 'smooth' });
+                    return;
+                }
+
+                scrollEl.scrollLeft = pos;
+                rafId = requestAnimationFrame(tick);
+            }
+
+            setTimeout(function() {
+                rafId = requestAnimationFrame(tick);
+            }, 600);
+        }
+
+        // Trigger hint when gallery or testimonials become visible
+        var hintObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    var galleryScroll = document.getElementById('galleryScroll');
+                    var testiScroll   = document.getElementById('testiScroll');
+                    if (galleryScroll) autoHintScroll(galleryScroll);
+                    if (testiScroll)   autoHintScroll(testiScroll);
+                    hintObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.35 });
+
+        var gallerySection = document.getElementById('gallery');
+        var testiSection   = document.getElementById('testiScroll');
+        if (gallerySection) hintObserver.observe(gallerySection);
+        if (testiSection)   hintObserver.observe(testiSection);
+
+    })();
+    </script>
+</body>
+</html>
