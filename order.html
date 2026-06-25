@@ -6,497 +6,515 @@
     <meta name="description" content="إتمام طلب العباية - اختاري اللون والمقاس">
     <meta name="theme-color" content="#134536">
     <title>إتمام الطلب - عباية شيماء</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: { brand: { green: '#134536', cream: '#FFFEF0' } },
-                    fontFamily: { arabic: ['El Messiri', 'serif'] },
+                    colors: { brand: { green:'#134536', cream:'#FFFEF0', gold:'#C9A96E', dark:'#0A2820', sand:'#F5F0E8' } },
+                    fontFamily: { arabic:['El Messiri','serif'], accent:['Cormorant Garamond','serif'], sans:['Inter','sans-serif'] },
                 }
             }
         }
     </script>
+
     <style>
-        :root {
-            --green: #134536;
-            --cream: #FFFEF0;
-            --gold: #C9A96E;
-            --white: #FFFFFF;
+        :root{--green:#134536;--green-light:#1a5c48;--cream:#FFFEF0;--gold:#C9A96E;--white:#FFFFFF;--black:#000000}
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+        *{-webkit-tap-highlight-color:transparent}
+
+        body{
+            font-family:'El Messiri',serif;
+            background:var(--white);color:var(--black);
+            min-height:100vh;overflow-x:hidden;
         }
-        * { -webkit-tap-highlight-color: transparent; }
-        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
-        body {
-            font-family: 'El Messiri', serif;
-            max-width: 480px;
-            margin: 0 auto;
-            background: var(--white);
-            color: #000;
-            overflow-x: hidden;
-            min-height: 100vh;
-        }
-        @media (min-width: 481px) {
-            body {
-                border-left: 1px solid rgba(0,0,0,0.06);
-                border-right: 1px solid rgba(0,0,0,0.06);
-                box-shadow: 0 0 60px rgba(0,0,0,0.08);
-            }
+        ::-webkit-scrollbar{width:0}
+
+        /* ── CONTAINER ── */
+        .container{width:100%;max-width:480px;margin:0 auto;padding:0 20px}
+        @media(min-width:768px){.container{max-width:740px;padding:0 32px}}
+        @media(min-width:1024px){.container{max-width:1120px;padding:0 40px}}
+
+        /* ── HEADER ── */
+        .header{position:sticky;top:0;z-index:100;background:var(--green);padding:10px 0;border-bottom:1px solid rgba(255,255,255,.06);box-shadow:0 4px 24px rgba(0,0,0,.2)}
+        .header-inner{position:relative;display:flex;align-items:center;justify-content:center}
+        .header-inner img{height:50px;width:auto;object-fit:contain;display:block}
+        @media(min-width:768px){.header-inner img{height:62px}}
+        .header-back{position:absolute;right:0;top:50%;transform:translateY(-50%);padding:8px;opacity:.7;color:white;z-index:1;transition:opacity .3s ease}
+        .header-back:hover{opacity:1}
+        .header-back svg{width:24px;height:24px;display:block}
+
+        /* ── MAIN CONTENT ── */
+        .main{padding:28px 0 160px}
+        @media(min-width:768px){.main{padding:40px 0 180px}}
+
+        /* ── PAGE TITLE ── */
+        .page-title{font-family:'El Messiri',serif;font-weight:600;text-align:center;font-size:1.5rem;margin-bottom:4px}
+        @media(min-width:768px){.page-title{font-size:2rem;margin-bottom:6px}}
+        @media(min-width:1024px){.page-title{font-size:2.3rem}}
+        .page-subtitle{text-align:center;opacity:.5;font-size:.85rem;margin-bottom:32px}
+        @media(min-width:768px){.page-subtitle{font-size:1rem;margin-bottom:40px}}
+        @media(min-width:1024px){.page-subtitle{font-size:1.1rem;margin-bottom:48px}}
+
+        /* ── FORM SECTIONS ── */
+        .form-section{margin-bottom:32px}
+        @media(min-width:768px){.form-section{margin-bottom:40px}}
+        @media(min-width:1024px){.form-section{margin-bottom:48px}}
+
+        .form-section-title{font-family:'El Messiri',serif;font-weight:600;font-size:1.1rem;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+        @media(min-width:768px){.form-section-title{font-size:1.2rem;margin-bottom:18px}}
+
+        /* Two-column layout on desktop */
+        @media(min-width:1024px){
+            .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+            .form-col-choices{max-width:420px;margin:0 auto}
+            .form-col-info{max-width:420px;margin:0 auto}
         }
 
-        /* Header */
-        .header {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: #134536;
-            border-bottom: 1px solid rgba(255,255,255,0.08);
-            padding: 0;
-            transition: box-shadow 0.3s ease;
+        /* ── COLOR DOTS ── */
+        .color-group{display:flex;gap:16px;flex-wrap:wrap}
+        @media(min-width:768px){.color-group{gap:20px}}
+
+        .color-dot{
+            width:46px;height:46px;border-radius:50%;cursor:pointer;
+            border:3px solid transparent;
+            transition:all .3s cubic-bezier(.25,.8,.25,1.2);
+            position:relative;flex-shrink:0;outline:none;
+        }
+        @media(min-width:768px){.color-dot{width:52px;height:52px}}
+
+        .color-dot:focus-visible{box-shadow:0 0 0 3px rgba(19,69,54,.3)}
+        .color-dot.selected{
+            border-color:var(--green);
+            box-shadow:0 0 0 5px rgba(19,69,54,.13);
+            transform:scale(1.1);
+        }
+        .color-dot.selected::after{
+            content:'✓';position:absolute;inset:0;
+            display:flex;align-items:center;justify-content:center;
+            color:white;font-weight:bold;font-size:1rem;
+            text-shadow:0 1px 2px rgba(0,0,0,.35);
+        }
+        @media(min-width:768px){.color-dot.selected::after{font-size:1.15rem}}
+
+        .color-label{font-size:.75rem;opacity:.4;margin-top:8px}
+        @media(min-width:768px){.color-label{font-size:.82rem;margin-top:10px}}
+
+        /* ── SIZE BUTTONS ── */
+        .size-group{display:flex;gap:12px;flex-wrap:wrap}
+        @media(min-width:768px){.size-group{gap:16px}}
+
+        .size-btn{
+            width:54px;height:54px;border-radius:50%;
+            border:2px solid rgba(0,0,0,.1);background:white;
+            cursor:pointer;font-family:'El Messiri',serif;
+            font-weight:600;font-size:1.05rem;
+            transition:all .3s cubic-bezier(.25,.8,.25,1.2);
+            display:flex;align-items:center;justify-content:center;
+            flex-shrink:0;outline:none;
+        }
+        @media(min-width:768px){.size-btn{width:60px;height:60px;font-size:1.15rem}}
+
+        .size-btn:focus-visible{box-shadow:0 0 0 3px rgba(19,69,54,.3)}
+        .size-btn.selected{
+            background:var(--green);color:white;
+            border-color:var(--green);
+            box-shadow:0 4px 16px rgba(19,69,54,.3);
+            transform:scale(1.07);
         }
 
-        /* Buttons */
-        .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            background: var(--green);
-            color: white;
-            font-family: 'El Messiri', serif;
-            font-weight: 600;
-            font-size: 1.1rem;
-            padding: 16px 40px;
-            border-radius: 50px;
-            border: none;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(19,69,54,0.25);
-            width: 100%;
-            position: relative;
-            overflow: hidden;
-        }
-        .btn-primary::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(255,255,255,0.12), transparent 60%);
-            pointer-events: none;
-        }
-        .btn-primary:active { transform: scale(0.97); }
-        .btn-primary:disabled {
-            opacity: 0.5;
-            pointer-events: none;
-            filter: grayscale(20%);
-        }
+        .size-label{font-size:.75rem;opacity:.4;margin-top:8px}
+        @media(min-width:768px){.size-label{font-size:.82rem;margin-top:10px}}
 
-        /* Color selector */
-        .color-dot {
-            width: 46px;
-            height: 46px;
-            border-radius: 50%;
-            cursor: pointer;
-            border: 3px solid transparent;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1.2);
-            position: relative;
-            flex-shrink: 0;
-            outline: none;
+        /* ── QUANTITY SELECTOR ── */
+        .qty-row{display:flex;align-items:center;gap:14px}
+        @media(min-width:768px){.qty-row{gap:18px}}
+        .qty-btn{
+            width:44px;height:44px;border-radius:50%;border:none;
+            cursor:pointer;font-size:1.4rem;font-weight:600;
+            display:flex;align-items:center;justify-content:center;
+            transition:all .2s ease;flex-shrink:0;
+            background:var(--cream);color:var(--green);
+            border:2px solid rgba(19,69,54,.1);
+            font-family:'Inter',sans-serif;line-height:1;
         }
-        .color-dot:focus-visible { box-shadow: 0 0 0 3px rgba(19,69,54,0.3); }
-        .color-dot.selected {
-            border-color: var(--green);
-            box-shadow: 0 0 0 5px rgba(19,69,54,0.13);
-            transform: scale(1.1);
+        @media(min-width:768px){.qty-btn{width:50px;height:50px;font-size:1.5rem}}
+        .qty-btn:active{transform:scale(.92);background:var(--green);color:white;border-color:var(--green)}
+        .qty-btn:focus-visible{box-shadow:0 0 0 3px rgba(19,69,54,.3);outline:none}
+        .qty-value{
+            min-width:44px;text-align:center;
+            font-family:'El Messiri',serif;font-weight:700;
+            font-size:1.6rem;color:var(--green);
+            user-select:none;
         }
-        .color-dot.selected::after {
-            content: '✓';
-            position: absolute;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            font-size: 1rem;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.35);
-        }
+        @media(min-width:768px){.qty-value{font-size:1.8rem;min-width:50px}}
+        .qty-label{font-size:.75rem;opacity:.4;margin-top:8px}
+        @media(min-width:768px){.qty-label{font-size:.82rem;margin-top:10px}}
 
-        /* Size selector */
-        .size-btn {
-            width: 54px;
-            height: 54px;
-            border-radius: 50%;
-            border: 2px solid rgba(0,0,0,0.1);
-            background: white;
-            cursor: pointer;
-            font-family: 'El Messiri', serif;
-            font-weight: 600;
-            font-size: 1.05rem;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            outline: none;
-        }
-        .size-btn:focus-visible { box-shadow: 0 0 0 3px rgba(19,69,54,0.3); }
-        .size-btn.selected {
-            background: var(--green);
-            color: white;
-            border-color: var(--green);
-            box-shadow: 0 4px 16px rgba(19,69,54,0.3);
-            transform: scale(1.07);
-        }
+        /* ── FORM INPUTS ── */
+        .field-group{margin-bottom:16px}
+        .field-label{display:block;font-size:.88rem;margin-bottom:6px;font-weight:500}
+        @media(min-width:768px){.field-label{font-size:.95rem;margin-bottom:8px}}
+        .field-required{color:#E53E3E}
 
-        /* Form inputs */
-        .form-input {
-            width: 100%;
-            padding: 15px 18px;
-            border-radius: 14px;
-            border: 2px solid rgba(0,0,0,0.08);
-            background: white;
-            font-family: 'El Messiri', serif;
-            font-size: 1rem;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-            outline: none;
-            direction: rtl;
-            color: #000;
+        .form-input{
+            width:100%;padding:15px 18px;border-radius:14px;
+            border:2px solid rgba(0,0,0,.08);background:white;
+            font-family:'El Messiri',serif;font-size:1rem;
+            transition:border-color .3s ease,box-shadow .3s ease;
+            outline:none;direction:rtl;color:#000;
         }
-        .form-input:focus {
-            border-color: var(--green);
-            box-shadow: 0 0 0 4px rgba(19,69,54,0.05);
-        }
-        .form-input.error {
-            border-color: #E53E3E;
-            box-shadow: 0 0 0 4px rgba(229,62,62,0.05);
-            animation: shake 0.5s ease;
-        }
-        .form-input::placeholder { color: #9CA3AF; }
-        .field-error {
-            color: #E53E3E;
-            font-size: 0.78rem;
-            margin-top: 5px;
-            display: none;
-        }
-        .field-error.show { display: block; }
+        @media(min-width:768px){.form-input{padding:16px 20px;font-size:1.05rem}}
 
-        /* Order summary */
-        .summary-box {
-            background: var(--cream);
-            border-radius: 18px;
-            padding: 22px 20px;
-            border: 1px solid rgba(19,69,54,0.06);
-        }
-        .summary-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 11px 0;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-        }
-        .summary-row:last-child { border-bottom: none; }
+        .form-input:focus{border-color:var(--green);box-shadow:0 0 0 4px rgba(19,69,54,.05)}
+        .form-input.error{border-color:#E53E3E;box-shadow:0 0 0 4px rgba(229,62,62,.05);animation:shake .5s ease}
+        .form-input::placeholder{color:#9CA3AF}
 
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            20%, 60% { transform: translateX(-4px); }
-            40%, 80% { transform: translateX(4px); }
+        .field-error{color:#E53E3E;font-size:.78rem;margin-top:5px;display:none}
+        .field-error.show{display:block}
+        @keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-4px)}40%,80%{transform:translateX(4px)}}
+
+        /* ── ORDER SUMMARY ── */
+        .summary-box{
+            background:var(--cream);border-radius:18px;
+            padding:22px 20px;border:1px solid rgba(19,69,54,.06);
         }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        @media(min-width:768px){.summary-box{padding:28px 28px;border-radius:20px}}
+
+        .summary-row{
+            display:flex;justify-content:space-between;align-items:center;
+            padding:11px 0;border-bottom:1px solid rgba(0,0,0,.05);
         }
-        .anim-fade-up { animation: fadeInUp 0.5s ease-out backwards; }
-        .anim-delay-1 { animation-delay: 0.1s; }
-        .anim-delay-2 { animation-delay: 0.2s; }
+        @media(min-width:768px){.summary-row{padding:13px 0}}
+        .summary-row:last-child{border-bottom:none}
+        .summary-row-title{font-size:.9rem;opacity:.55}
+        .summary-row-value{font-weight:600;font-size:.9rem}
+        @media(min-width:768px){.summary-row-value{font-size:.95rem}}
+
+        .summary-total-row{
+            display:flex;justify-content:space-between;align-items:center;
+            border-top:2px solid rgba(19,69,54,.12);
+            margin-top:6px;padding-top:14px;
+        }
+        .summary-total-label{font-weight:700;font-size:1rem}
+        .summary-total-price{font-weight:700;font-size:1.15rem;color:var(--green)}
+        @media(min-width:768px){.summary-total-price{font-size:1.3rem}}
+
+        .summary-payment-row{
+            display:flex;justify-content:space-between;align-items:center;
+            padding:11px 0;
+        }
+        .summary-payment-value{font-weight:600;color:var(--green)}
+
+        /* ── SUBMIT BUTTON ── */
+        .btn-primary{
+            display:flex;align-items:center;justify-content:center;gap:8px;
+            background:var(--green);color:white;
+            font-family:'El Messiri',serif;font-weight:600;
+            font-size:1.1rem;padding:18px 40px;border-radius:50px;
+            border:none;cursor:pointer;text-decoration:none;
+            transition:all .3s ease;
+            box-shadow:0 4px 20px rgba(19,69,54,.25);
+            width:100%;position:relative;overflow:hidden;
+        }
+        @media(min-width:768px){.btn-primary{font-size:1.2rem;padding:20px 44px}}
+        @media(min-width:1024px){.btn-primary{max-width:500px;margin:0 auto}}
+
+        .btn-primary::after{
+            content:'';position:absolute;inset:0;
+            background:linear-gradient(135deg,rgba(255,255,255,.12),transparent 60%);
+            pointer-events:none;
+        }
+        .btn-primary:active{transform:scale(.97)}
+        .btn-primary:disabled{opacity:.5;pointer-events:none;filter:grayscale(20%)}
+
+        /* ── TRUST ROW ── */
+        .trust-row{
+            display:flex;align-items:center;justify-content:center;
+            gap:8px;margin-top:14px;font-size:.75rem;opacity:.35;
+        }
+        @media(min-width:768px){.trust-row{font-size:.82rem;gap:12px;margin-top:18px}}
+        .trust-dot{opacity:.5}
+
+        /* ── ANIMATIONS ── */
+        @keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+        .anim-fade-up{animation:fadeInUp .5s ease-out backwards}
+        .anim-d1{animation-delay:.1s}.anim-d2{animation-delay:.2s}.anim-d3{animation-delay:.3s}
     </style>
 </head>
 <body>
 
-    <!-- HEADER -->
-    <header style="position: sticky; top: 0; z-index: 100; background: #134536; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.06); box-shadow: 0 4px 24px rgba(0,0,0,0.2);">
-        <div style="position: relative; display: flex; align-items: center; justify-content: center;">
-            <!-- Back button -->
-            <a href="index.html" style="position: absolute; right: 14px; top: 50%; transform: translateY(-50%); padding: 8px; opacity: 0.7; color: white; z-index: 1;" aria-label="رجوع للصفحة الرئيسية">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+    <!-- ═══════════ HEADER ═══════════ -->
+    <header class="header">
+        <div class="header-inner container">
+            <a href="index.html" class="header-back" aria-label="رجوع للصفحة الرئيسية">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
             </a>
-            <!-- Logo -->
-            <img src="./logo.png" alt="Chaymae Fashion Logo" style="height: 55px; width: auto; object-fit: contain; display: block;">
+            <img src="./logo.png" alt="Chaymae Fashion Logo">
         </div>
     </header>
 
-    <!-- FORM CONTENT -->
-    <div class="px-5 pb-36">
+    <!-- ═══════════ MAIN CONTENT ═══════════ -->
+    <div class="main">
+        <div class="container">
 
-        <!-- Title -->
-        <div class="text-center my-7 anim-fade-up">
-            <h2 class="text-2xl font-semibold mb-1">إتمام الطلب</h2>
-            <p class="opacity-50 text-sm">اختاري التفاصيل وسنتكفل بالباقي</p>
-        </div>
-
-        <!-- COLOR SELECTION -->
-        <div class="mb-7 anim-fade-up anim-delay-1">
-            <h3 class="text-lg font-semibold mb-3 flex items-center gap-2">
-                <span style="color: var(--green);">✦</span> اختاري اللون
-            </h3>
-            <div class="flex gap-4" id="colorGroup" role="radiogroup" aria-label="اختيار اللون">
-                <div class="color-dot selected" style="background:#134536;" data-color="أخضر" data-hex="#134536" tabindex="0" role="radio" aria-checked="true" aria-label="أخضر" onclick="pickColor(this)" onkeydown="navColor(event,this)"></div>
-                <div class="color-dot" style="background:#D4C5B2;" data-color="بيج" data-hex="#D4C5B2" tabindex="-1" role="radio" aria-checked="false" aria-label="بيج" onclick="pickColor(this)" onkeydown="navColor(event,this)"></div>
-                <div class="color-dot" style="background:#5C3A28;" data-color="بني" data-hex="#5C3A28" tabindex="-1" role="radio" aria-checked="false" aria-label="بني" onclick="pickColor(this)" onkeydown="navColor(event,this)"></div>
-                <div class="color-dot" style="background:#2B4C7E;" data-color="أزرق" data-hex="#2B4C7E" tabindex="-1" role="radio" aria-checked="false" aria-label="أزرق" onclick="pickColor(this)" onkeydown="navColor(event,this)"></div>
+            <!-- Title -->
+            <div class="anim-fade-up" style="margin-bottom:32px">
+                <h2 class="page-title">إتمام الطلب</h2>
+                <p class="page-subtitle">اختاري التفاصيل وسنتكفل بالباقي</p>
             </div>
-            <p class="text-xs opacity-40 mt-2" id="colorLabel">المختار: أخضر</p>
-        </div>
 
-        <!-- SIZE SELECTION -->
-        <div class="mb-7 anim-fade-up anim-delay-1">
-            <h3 class="text-lg font-semibold mb-3 flex items-center gap-2">
-                <span style="color: var(--green);">✦</span> اختاري المقاس
-            </h3>
-            <div class="flex gap-3" id="sizeGroup" role="radiogroup" aria-label="اختيار المقاس">
-                <button class="size-btn selected" data-size="S" role="radio" aria-checked="true" aria-label="مقاس S" onclick="pickSize(this)" onkeydown="navSize(event,this)">S</button>
-                <button class="size-btn" data-size="M" role="radio" aria-checked="false" aria-label="مقاس M" onclick="pickSize(this)" onkeydown="navSize(event,this)">M</button>
-                <button class="size-btn" data-size="L" role="radio" aria-checked="false" aria-label="مقاس L" onclick="pickSize(this)" onkeydown="navSize(event,this)">L</button>
-                <button class="size-btn" data-size="XL" role="radio" aria-checked="false" aria-label="مقاس XL" onclick="pickSize(this)" onkeydown="navSize(event,this)">XL</button>
+            <!-- Desktop: two columns -->
+            <div class="form-grid">
+
+                <!-- Left column: choices -->
+                <div class="form-col-choices">
+
+                    <!-- COLOR -->
+                    <div class="form-section anim-fade-up anim-d1">
+                        <h3 class="form-section-title">اختاري اللون</h3>
+                        <div class="color-group" id="colorGroup" role="radiogroup" aria-label="اختيار اللون">
+                            <div class="color-dot selected" style="background:#134536" data-color="أخضر" data-hex="#134536" tabindex="0" role="radio" aria-checked="true" aria-label="أخضر" onclick="pickColor(this)" onkeydown="navColor(event,this)"></div>
+                            <div class="color-dot" style="background:#D4C5B2" data-color="بيج" data-hex="#D4C5B2" tabindex="-1" role="radio" aria-checked="false" aria-label="بيج" onclick="pickColor(this)" onkeydown="navColor(event,this)"></div>
+                            <div class="color-dot" style="background:#5C3A28" data-color="بني" data-hex="#5C3A28" tabindex="-1" role="radio" aria-checked="false" aria-label="بني" onclick="pickColor(this)" onkeydown="navColor(event,this)"></div>
+                            <div class="color-dot" style="background:#2B4C7E" data-color="أزرق" data-hex="#2B4C7E" tabindex="-1" role="radio" aria-checked="false" aria-label="أزرق" onclick="pickColor(this)" onkeydown="navColor(event,this)"></div>
+                        </div>
+                        <p class="color-label" id="colorLabel">المختار: أخضر</p>
+                    </div>
+
+                    <!-- SIZE -->
+                    <div class="form-section anim-fade-up anim-d1">
+                        <h3 class="form-section-title">اختاري المقاس</h3>
+                        <div class="size-group" id="sizeGroup" role="radiogroup" aria-label="اختيار المقاس">
+                            <button class="size-btn selected" data-size="S" role="radio" aria-checked="true" aria-label="مقاس S" onclick="pickSize(this)" onkeydown="navSize(event,this)">S</button>
+                            <button class="size-btn" data-size="M" role="radio" aria-checked="false" aria-label="مقاس M" onclick="pickSize(this)" onkeydown="navSize(event,this)">M</button>
+                            <button class="size-btn" data-size="L" role="radio" aria-checked="false" aria-label="مقاس L" onclick="pickSize(this)" onkeydown="navSize(event,this)">L</button>
+                            <button class="size-btn" data-size="XL" role="radio" aria-checked="false" aria-label="مقاس XL" onclick="pickSize(this)" onkeydown="navSize(event,this)">XL</button>
+                        </div>
+                        <p class="size-label" id="sizeLabel">المختار: S</p>
+                    </div>
+
+                    <!-- QUANTITY -->
+                    <div class="form-section anim-fade-up anim-d1">
+                        <h3 class="form-section-title">الكمية</h3>
+                        <div class="qty-row">
+                            <button class="qty-btn" onclick="changeQty(1)" aria-label="زيادة الكمية">+</button>
+                            <span class="qty-value" id="qtyValue">1</span>
+                            <button class="qty-btn" onclick="changeQty(-1)" aria-label="نقصان الكمية">−</button>
+                        </div>
+                        <p class="qty-label" id="qtyLabel">الكمية: 1</p>
+                    </div>
+
+                </div>
+
+                <!-- Right column: info + summary -->
+                <div class="form-col-info">
+
+                    <!-- CUSTOMER INFO -->
+                    <div class="form-section anim-fade-up anim-d2">
+                        <h3 class="form-section-title">معلومات التوصيل</h3>
+
+                        <div class="field-group">
+                            <label for="fullName" class="field-label">الاسم الكامل <span class="field-required">*</span></label>
+                            <input type="text" id="fullName" class="form-input" placeholder="أدخلي اسمك الكامل" required autocomplete="name" aria-required="true" aria-describedby="errFullName">
+                            <p class="field-error" id="errFullName" role="alert">المرجو إدخال الاسم الكامل</p>
+                        </div>
+
+                        <div class="field-group">
+                            <label for="phone" class="field-label">رقم الهاتف <span class="field-required">*</span></label>
+                            <input type="tel" id="phone" class="form-input" placeholder="+212 6XX XXX XXX" required autocomplete="tel" dir="ltr" style="text-align:right" aria-required="true" aria-describedby="errPhone">
+                            <p class="field-error" id="errPhone" role="alert">المرجو إدخال رقم هاتف صحيح (يبدأ بـ 06 أو 07 أو +212)</p>
+                        </div>
+
+                        <div class="field-group">
+                            <label for="city" class="field-label">المدينة <span class="field-required">*</span></label>
+                            <input type="text" id="city" class="form-input" placeholder="أدخلي مدينتك (مثال: الدار البيضاء)" required aria-required="true" aria-describedby="errCity">
+                            <p class="field-error" id="errCity" role="alert">المرجو إدخال اسم المدينة</p>
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
-            <p class="text-xs opacity-40 mt-2" id="sizeLabel">المختار: S</p>
-        </div>
 
-        <!-- CUSTOMER INFO -->
-        <div class="mb-7 anim-fade-up anim-delay-2">
-            <h3 class="text-lg font-semibold mb-3 flex items-center gap-2">
-                <span style="color: var(--green);">✦</span> معلومات التوصيل
-            </h3>
-            <div style="display:flex;flex-direction:column;gap:14px;">
-                <div>
-                    <label for="fullName" class="block text-sm mb-1.5 font-medium">الاسم الكامل <span class="text-red-500">*</span></label>
-                    <input type="text" id="fullName" class="form-input" placeholder="أدخلي اسمك الكامل" required autocomplete="name" aria-required="true" aria-describedby="errFullName">
-                    <p class="field-error" id="errFullName" role="alert">المرجو إدخال الاسم الكامل</p>
-                </div>
-                <div>
-                    <label for="phone" class="block text-sm mb-1.5 font-medium">رقم الهاتف <span class="text-red-500">*</span></label>
-                    <input type="tel" id="phone" class="form-input" placeholder="+212 6XX XXX XXX" required autocomplete="tel" dir="ltr" style="text-align:right;" aria-required="true" aria-describedby="errPhone">
-                    <p class="field-error" id="errPhone" role="alert">المرجو إدخال رقم هاتف صحيح (يبدأ بـ 06 أو 07 أو +212)</p>
-                </div>
-                <div>
-                    <label for="city" class="block text-sm mb-1.5 font-medium">المدينة <span class="text-red-500">*</span></label>
-                    <input type="text" id="city" class="form-input" placeholder="أدخلي مدينتك (مثال: الدار البيضاء)" required aria-required="true" aria-describedby="errCity">
-                    <p class="field-error" id="errCity" role="alert">المرجو إدخال اسم المدينة</p>
+            <!-- ORDER SUMMARY (full width below on desktop) -->
+            <div class="form-section anim-fade-up anim-d3" style="max-width:500px;margin-left:auto;margin-right:auto">
+                <h3 class="form-section-title">ملخص الطلب</h3>
+                <div class="summary-box">
+                    <div class="summary-row">
+                        <span class="summary-row-title">المنتج</span>
+                        <span class="summary-row-value">عباية شيماء</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-row-title">اللون</span>
+                        <span class="summary-row-value" id="sumColor">
+                            <span style="display:inline-block;width:14px;height:14px;border-radius:50%;background:#134536;vertical-align:middle;margin-left:4px"></span>
+                            أخضر
+                        </span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-row-title">المقاس</span>
+                        <span class="summary-row-value" id="sumSize">S</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-row-title">الكمية</span>
+                        <span class="summary-row-value" id="sumQty">1</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-row-title">السعر الفردي</span>
+                        <span class="summary-row-value">297 DH</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-row-title">التوصيل</span>
+                        <span class="summary-row-value" style="color:var(--green)">مجاني</span>
+                    </div>
+                    <div class="summary-total-row">
+                        <span class="summary-total-label">المجموع</span>
+                        <span class="summary-total-price" id="sumTotal">297 DH</span>
+                    </div>
+                    <div class="summary-payment-row">
+                        <span class="summary-row-title">طريقة الدفع</span>
+                        <span class="summary-payment-value">الدفع عند الاستلام</span>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- ORDER SUMMARY -->
-        <div class="mb-7 anim-fade-up anim-delay-2">
-            <h3 class="text-lg font-semibold mb-3 flex items-center gap-2">
-                <span style="color: var(--green);">✦</span> ملخص الطلب
-            </h3>
-            <div class="summary-box">
-                <div class="summary-row">
-                    <span class="opacity-55">المنتج</span>
-                    <span class="font-semibold">عباية شيماء</span>
-                </div>
-                <div class="summary-row">
-                    <span class="opacity-55">اللون</span>
-                    <span class="font-semibold" id="sumColor">
-                        <span style="display:inline-block;width:14px;height:14px;border-radius:50%;background:#134536;vertical-align:middle;margin-left:4px;"></span>
-                        أخضر
-                    </span>
-                </div>
-                <div class="summary-row">
-                    <span class="opacity-55">المقاس</span>
-                    <span class="font-semibold" id="sumSize">S</span>
-                </div>
-                <div class="summary-row">
-                    <span class="opacity-55">التوصيل</span>
-                    <span class="font-semibold" style="color:var(--green);">مجاني</span>
-                </div>
-                <div class="summary-row" style="border-top:2px solid rgba(19,69,54,0.12); margin-top:6px; padding-top:14px;">
-                    <span class="font-bold text-base">السعر</span>
-                    <span class="font-bold text-lg" style="color:var(--green);">297 DH</span>
-                </div>
-                <div class="summary-row">
-                    <span class="opacity-55">طريقة الدفع</span>
-                    <span class="font-semibold" style="color:var(--green);">الدفع عند الاستلام</span>
-                </div>
+            <!-- SUBMIT -->
+            <div class="anim-fade-up anim-d3" style="margin-top:28px">
+                <button class="btn-primary" id="submitBtn" onclick="submitOrder()">
+                    تأكيد الطلب
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 10 4 15 9 20"/><path d="M20 4v7a4 4 0 01-4 4H4"/></svg>
+                </button>
             </div>
-        </div>
 
-        <!-- SUBMIT -->
-        <button class="btn-primary text-lg anim-fade-up anim-delay-2" id="submitBtn" onclick="submitOrder()" style="padding: 18px;">
-            تأكيد الطلب
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 10 4 15 9 20"/><path d="M20 4v7a4 4 0 01-4 4H4"/></svg>
-        </button>
+            <div class="trust-row">
+                <span>🔒 طلب آمن</span>
+                <span class="trust-dot">•</span>
+                <span>✓ دفع عند الاستلام</span>
+                <span class="trust-dot">•</span>
+                <span>🚚 توصيل سريع</span>
+            </div>
 
-        <!-- Trust row -->
-        <div class="flex items-center justify-center gap-2 mt-4 text-xs opacity-35">
-            <span>🔒 طلب آمن</span>
-            <span>•</span>
-            <span>✓ دفع عند الاستلام</span>
-            <span>•</span>
-            <span>🚚 توصيل سريع</span>
         </div>
     </div>
 
+
+    <!-- ═══════════ SCRIPTS ═══════════ -->
     <script>
-        // ===== STATE =====
-        const order = {
-            color: 'أخضر',
-            colorHex: '#134536',
-            size: 'S',
+    (function(){
+        'use strict';
+
+        var order={color:'أخضر',colorHex:'#134536',size:'S',qty:1,unitPrice:297};
+
+        // ── COLOR ──
+        window.pickColor=function(el){
+            document.querySelectorAll('#colorGroup .color-dot').forEach(function(d){
+                d.classList.remove('selected');d.setAttribute('aria-checked','false');d.setAttribute('tabindex','-1');
+            });
+            el.classList.add('selected');el.setAttribute('aria-checked','true');el.setAttribute('tabindex','0');el.focus();
+            order.color=el.dataset.color;order.colorHex=el.dataset.hex;
+            document.getElementById('colorLabel').textContent='المختار: '+order.color;
+            refreshSummary();
         };
 
-        // ===== COLOR =====
-        function pickColor(el) {
-            document.querySelectorAll('#colorGroup .color-dot').forEach(d => {
-                d.classList.remove('selected');
-                d.setAttribute('aria-checked', 'false');
-                d.setAttribute('tabindex', '-1');
+        window.navColor=function(e,el){
+            var items=Array.from(document.querySelectorAll('#colorGroup .color-dot'));
+            var i=items.indexOf(el);
+            if(e.key==='ArrowRight'||e.key==='ArrowDown'){e.preventDefault();pickColor(items[(i+1)%items.length])}
+            else if(e.key==='ArrowLeft'||e.key==='ArrowUp'){e.preventDefault();pickColor(items[(i-1+items.length)%items.length])}
+            else if(e.key==='Enter'||e.key===' '){e.preventDefault();pickColor(el)}
+        };
+
+        // ── SIZE ──
+        window.pickSize=function(el){
+            document.querySelectorAll('#sizeGroup .size-btn').forEach(function(b){
+                b.classList.remove('selected');b.setAttribute('aria-checked','false');
             });
-            el.classList.add('selected');
-            el.setAttribute('aria-checked', 'true');
-            el.setAttribute('tabindex', '0');
-            el.focus();
-            order.color = el.dataset.color;
-            order.colorHex = el.dataset.hex;
-            document.getElementById('colorLabel').textContent = 'المختار: ' + order.color;
+            el.classList.add('selected');el.setAttribute('aria-checked','true');el.focus();
+            order.size=el.dataset.size;
+            document.getElementById('sizeLabel').textContent='المختار: '+order.size;
             refreshSummary();
-        }
+        };
 
-        function navColor(e, el) {
-            const items = Array.from(document.querySelectorAll('#colorGroup .color-dot'));
-            const i = items.indexOf(el);
-            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-                e.preventDefault();
-                pickColor(items[(i + 1) % items.length]);
-            } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-                e.preventDefault();
-                pickColor(items[(i - 1 + items.length) % items.length]);
-            } else if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                pickColor(el);
-            }
-        }
-
-        // ===== SIZE =====
-        function pickSize(el) {
-            document.querySelectorAll('#sizeGroup .size-btn').forEach(b => {
-                b.classList.remove('selected');
-                b.setAttribute('aria-checked', 'false');
-            });
-            el.classList.add('selected');
-            el.setAttribute('aria-checked', 'true');
-            el.focus();
-            order.size = el.dataset.size;
-            document.getElementById('sizeLabel').textContent = 'المختار: ' + order.size;
+        // ── QUANTITY ──
+        window.changeQty=function(delta){
+            order.qty=Math.max(1,Math.min(10,order.qty+delta));
+            document.getElementById('qtyValue').textContent=order.qty;
+            document.getElementById('qtyLabel').textContent='الكمية: '+order.qty;
             refreshSummary();
+        };
+
+        window.navSize=function(e,el){
+            var items=Array.from(document.querySelectorAll('#sizeGroup .size-btn'));
+            var i=items.indexOf(el);
+            if(e.key==='ArrowRight'||e.key==='ArrowDown'){e.preventDefault();pickSize(items[(i+1)%items.length])}
+            else if(e.key==='ArrowLeft'||e.key==='ArrowUp'){e.preventDefault();pickSize(items[(i-1+items.length)%items.length])}
+            else if(e.key==='Enter'||e.key===' '){e.preventDefault();pickSize(el)}
+        };
+
+        // ── SUMMARY ──
+        function refreshSummary(){
+            document.getElementById('sumColor').innerHTML='<span style="display:inline-block;width:14px;height:14px;border-radius:50%;background:'+order.colorHex+';vertical-align:middle;margin-left:4px"></span>'+order.color;
+            document.getElementById('sumSize').textContent=order.size;
+            document.getElementById('sumQty').textContent=order.qty;
+            document.getElementById('sumTotal').textContent=(order.unitPrice*order.qty)+' DH';
+            var btn=document.getElementById('submitBtn');
+            if(btn)btn.innerHTML='تأكيد الطلب ('+(order.unitPrice*order.qty)+' DH) <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 10 4 15 9 20"/><path d="M20 4v7a4 4 0 01-4 4H4"/></svg>';
         }
 
-        function navSize(e, el) {
-            const items = Array.from(document.querySelectorAll('#sizeGroup .size-btn'));
-            const i = items.indexOf(el);
-            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-                e.preventDefault();
-                pickSize(items[(i + 1) % items.length]);
-            } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-                e.preventDefault();
-                pickSize(items[(i - 1 + items.length) % items.length]);
-            } else if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                pickSize(el);
-            }
+        // ── VALIDATION ──
+        function showErr(id,errId){document.getElementById(id).classList.add('error');document.getElementById(errId).classList.add('show')}
+        function clearErr(id,errId){document.getElementById(id).classList.remove('error');document.getElementById(errId).classList.remove('show')}
+
+        function validateField(id){
+            var el=document.getElementById(id),val=el.value.trim();
+            var errId='err'+id.charAt(0).toUpperCase()+id.slice(1);
+            if(!val){showErr(id,errId);return false}
+            if(id==='phone'){var clean=val.replace(/[\s\-()]/g,'');if(!/^(\+212|0)?[5-7]\d{8}$/.test(clean)){showErr(id,errId);return false}}
+            clearErr(id,errId);return true;
         }
 
-        // ===== SUMMARY =====
-        function refreshSummary() {
-            document.getElementById('sumColor').innerHTML =
-                '<span style="display:inline-block;width:14px;height:14px;border-radius:50%;background:' + order.colorHex + ';vertical-align:middle;margin-left:4px;"></span>' +
-                order.color;
-            document.getElementById('sumSize').textContent = order.size;
-        }
-
-        // ===== VALIDATION =====
-        function showError(inputId, errId) {
-            document.getElementById(inputId).classList.add('error');
-            document.getElementById(errId).classList.add('show');
-        }
-        function clearError(inputId, errId) {
-            document.getElementById(inputId).classList.remove('error');
-            document.getElementById(errId).classList.remove('show');
-        }
-
-        function validateField(id) {
-            const el = document.getElementById(id);
-            const val = el.value.trim();
-            const errId = 'err' + id.charAt(0).toUpperCase() + id.slice(1);
-
-            if (!val) {
-                showError(id, errId);
-                return false;
-            }
-            if (id === 'phone') {
-                const clean = val.replace(/[\s\-()]/g, '');
-                if (!/^(\+212|0)?[5-7]\d{8}$/.test(clean)) {
-                    showError(id, errId);
-                    return false;
-                }
-            }
-            clearError(id, errId);
-            return true;
-        }
-
-        // Live validation
-        ['fullName', 'phone', 'city'].forEach(id => {
-            const el = document.getElementById(id);
-            const errId = 'err' + id.charAt(0).toUpperCase() + id.slice(1);
-            el.addEventListener('blur', () => validateField(id));
-            el.addEventListener('input', () => {
-                if (el.classList.contains('error')) validateField(id);
-            });
+        ['fullName','phone','city'].forEach(function(id){
+            var el=document.getElementById(id);
+            var errId='err'+id.charAt(0).toUpperCase()+id.slice(1);
+            el.addEventListener('blur',function(){validateField(id)});
+            el.addEventListener('input',function(){if(el.classList.contains('error'))validateField(id)});
         });
 
-        // ===== SUBMIT =====
-        function submitOrder() {
-            const nameOk = validateField('fullName');
-            const phoneOk = validateField('phone');
-            const cityOk = validateField('city');
-
-            if (!nameOk || !phoneOk || !cityOk) {
-                const firstErr = document.querySelector('.form-input.error');
-                if (firstErr) {
-                    firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    firstErr.focus();
-                }
+        // ── SUBMIT ──
+        window.submitOrder=function(){
+            var nameOk=validateField('fullName'),phoneOk=validateField('phone'),cityOk=validateField('city');
+            if(!nameOk||!phoneOk||!cityOk){
+                var firstErr=document.querySelector('.form-input.error');
+                if(firstErr){firstErr.scrollIntoView({behavior:'smooth',block:'center'});firstErr.focus()}
                 return;
             }
-
-            const orderData = {
-                product: 'عباية شيماء',
-                price: '297 DH',
-                color: order.color,
-                colorHex: order.colorHex,
-                size: order.size,
-                name: document.getElementById('fullName').value.trim(),
-                phone: document.getElementById('phone').value.trim(),
-                city: document.getElementById('city').value.trim(),
-                date: new Date().toISOString(),
+            var orderData={
+                product:'عباية شيماء',unitPrice:order.unitPrice,
+                totalPrice:order.unitPrice*order.qty,
+                qty:order.qty,
+                color:order.color,colorHex:order.colorHex,size:order.size,
+                name:document.getElementById('fullName').value.trim(),
+                phone:document.getElementById('phone').value.trim(),
+                city:document.getElementById('city').value.trim(),
+                date:new Date().toISOString()
             };
+            localStorage.setItem('chamaOrder',JSON.stringify(orderData));
+            // Also update button text with total
+            var btn=document.getElementById('submitBtn');
+            if(btn)btn.textContent='تأكيد الطلب - '+(order.unitPrice*order.qty)+' DH';
+            try{var all=JSON.parse(localStorage.getItem('chamaOrders')||'[]');all.push(orderData);localStorage.setItem('chamaOrders',JSON.stringify(all))}catch(e){}
+            window.location.href='thankyou.html';
+        };
 
-            // Save for thankyou page
-            localStorage.setItem('chamaOrder', JSON.stringify(orderData));
-
-            // Also keep history of all orders
-            try {
-                const all = JSON.parse(localStorage.getItem('chamaOrders') || '[]');
-                all.push(orderData);
-                localStorage.setItem('chamaOrders', JSON.stringify(all));
-            } catch (e) {}
-
-            // Redirect
-            window.location.href = 'thankyou.html';
-        }
+    })();
     </script>
 </body>
 </html>
